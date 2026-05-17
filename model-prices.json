@@ -1,0 +1,2934 @@
+{
+  "_meta": {
+    "schema_version": "1.1.0",
+    "updated_at": "2026-05-07",
+    "currency": "mixed",
+    "default_unit": "per_1m_tokens",
+    "notes": [
+      "Token prices are per 1,000,000 tokens unless a model price object states another unit.",
+      "Official pages can change without versioned release notes; refresh this file from the listed sources before billing-critical use.",
+      "Root currency is mixed after adding CNY-denominated Chinese cloud/platform pricing; each provider section declares currency and unit overrides.",
+      "Prices are copied from official pages. Do not normalize currencies unless a downstream billing layer supplies an exchange rate.",
+      "When an official page lists only plan entitlements or omits token pricing, the section stores notes or non-token plan prices instead of inferred token prices."
+    ],
+    "sources": {
+      "openai_models": "https://developers.openai.com/api/docs/models/all",
+      "openai_pricing": "https://developers.openai.com/api/docs/pricing",
+      "openai_latest_model": "https://developers.openai.com/api/docs/guides/latest-model.md",
+      "anthropic_models": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
+      "anthropic_pricing": "https://platform.claude.com/docs/en/about-claude/pricing.md",
+      "gemini_models": "https://ai.google.dev/gemini-api/docs/models",
+      "gemini_pricing": "https://ai.google.dev/gemini-api/docs/pricing",
+      "vertex_pricing": "https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing",
+      "kimi_models": "https://platform.kimi.ai/docs/models.md",
+      "kimi_pricing": "https://platform.kimi.ai/docs/pricing/chat",
+      "antigravity_pricing": "https://antigravity.google/pricing",
+      "claude_models": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
+      "claude_pricing": "https://platform.claude.com/docs/en/about-claude/pricing.md",
+      "xai_models_pricing": "https://docs.x.ai/developers/models.md",
+      "deepseek_models_pricing": "https://api-docs.deepseek.com/quick_start/pricing",
+      "mistral_models": "https://docs.mistral.ai/docs/getting-started/models/overview.md",
+      "mistral_pricing": "https://mistral.ai/pricing",
+      "cohere_models": "https://docs.cohere.com/docs/models.md",
+      "cohere_pricing_docs": "https://docs.cohere.com/docs/how-does-cohere-pricing-work.md",
+      "cohere_pricing": "https://cohere.com/pricing",
+      "perplexity_pricing": "https://docs.perplexity.ai/docs/getting-started/pricing.md",
+      "perplexity_openapi": "https://docs.perplexity.ai/openapi.json",
+      "qwen_models": "https://help.aliyun.com/zh/model-studio/text-generation-model/",
+      "qwen_pricing": "https://help.aliyun.com/zh/model-studio/billing/",
+      "qianfan_models": "https://cloud.baidu.com/doc/qianfan-docs/s/7m95lyy43",
+      "qianfan_pricing": "https://cloud.baidu.com/doc/qianfan-docs/s/Jm8r1826a",
+      "hunyuan_models": "https://cloud.tencent.com/document/product/1729/104753",
+      "hunyuan_pricing": "https://cloud.tencent.com/document/product/1729/97731",
+      "zai_models": "https://docs.z.ai/guides/overview/overview",
+      "zai_pricing": "https://docs.z.ai/guides/overview/pricing",
+      "minimax_models": "https://platform.minimax.io/docs/guides/text-generation",
+      "minimax_pricing": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "ai21_models": "https://docs.ai21.com/docs/jamba-foundation-models",
+      "ai21_pricing": "https://www.ai21.com/pricing/"
+    }
+  },
+  "openai": {
+    "unit": "per_1m_tokens",
+    "notes": [
+      "Columns are input, cached_input, and output token prices.",
+      "For gpt-5.5, gpt-5.5-pro, gpt-5.4, and gpt-5.4-pro, prompts with more than 272K input tokens have long-context pricing; see long_context_pricing.",
+      "Regional processing/data-residency endpoints have a 10% uplift for gpt-5.5, gpt-5.5-pro, gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, and gpt-5.4-pro."
+    ],
+    "long_context_pricing": {
+      "threshold_input_tokens": 272000,
+      "applies_to": [
+        "gpt-5.5",
+        "gpt-5.5-pro",
+        "gpt-5.4",
+        "gpt-5.4-pro"
+      ],
+      "standard_batch_flex_multiplier": {
+        "input": 2,
+        "output": 1.5
+      }
+    },
+    "text": {
+      "gpt-5.5": {
+        "standard": {
+          "input": 5,
+          "cached_input": 0.5,
+          "output": 30
+        },
+        "batch": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 15
+        },
+        "flex": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 15
+        },
+        "priority": {
+          "input": 12.5,
+          "cached_input": 1.25,
+          "output": 75
+        }
+      },
+      "gpt-5.5-pro": {
+        "standard": {
+          "input": 30,
+          "cached_input": null,
+          "output": 180
+        },
+        "batch": {
+          "input": 15,
+          "cached_input": null,
+          "output": 90
+        },
+        "flex": {
+          "input": 15,
+          "cached_input": null,
+          "output": 90
+        }
+      },
+      "gpt-5.4": {
+        "standard": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 15
+        },
+        "batch": {
+          "input": 1.25,
+          "cached_input": 0.13,
+          "output": 7.5
+        },
+        "flex": {
+          "input": 1.25,
+          "cached_input": 0.13,
+          "output": 7.5
+        },
+        "priority": {
+          "input": 5,
+          "cached_input": 0.5,
+          "output": 30
+        }
+      },
+      "gpt-5.4-pro": {
+        "standard": {
+          "input": 30,
+          "cached_input": null,
+          "output": 180
+        },
+        "batch": {
+          "input": 15,
+          "cached_input": null,
+          "output": 90
+        },
+        "flex": {
+          "input": 15,
+          "cached_input": null,
+          "output": 90
+        }
+      },
+      "gpt-5.4-mini": {
+        "standard": {
+          "input": 0.75,
+          "cached_input": 0.075,
+          "output": 4.5
+        },
+        "batch": {
+          "input": 0.375,
+          "cached_input": 0.0375,
+          "output": 2.25
+        },
+        "flex": {
+          "input": 0.375,
+          "cached_input": 0.0375,
+          "output": 2.25
+        },
+        "priority": {
+          "input": 1.5,
+          "cached_input": 0.15,
+          "output": 9
+        }
+      },
+      "gpt-5.4-nano": {
+        "standard": {
+          "input": 0.2,
+          "cached_input": 0.02,
+          "output": 1.25
+        },
+        "batch": {
+          "input": 0.1,
+          "cached_input": 0.01,
+          "output": 0.625
+        },
+        "flex": {
+          "input": 0.1,
+          "cached_input": 0.01,
+          "output": 0.625
+        }
+      },
+      "gpt-5.3-codex": {
+        "standard": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14
+        },
+        "priority": {
+          "input": 3.5,
+          "cached_input": 0.35,
+          "output": 28
+        }
+      },
+      "gpt-5.2-codex": {
+        "standard": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14
+        },
+        "priority": {
+          "input": 3.5,
+          "cached_input": 0.35,
+          "output": 28
+        }
+      },
+      "gpt-5.1-codex-max": {
+        "standard": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10
+        },
+        "priority": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 20
+        }
+      },
+      "gpt-5.1-codex": {
+        "standard": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10
+        },
+        "priority": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 20
+        }
+      },
+      "gpt-5-codex": {
+        "standard": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10
+        },
+        "priority": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 20
+        }
+      },
+      "gpt-5.1-codex-mini": {
+        "standard": {
+          "input": 0.25,
+          "cached_input": 0.025,
+          "output": 2
+        }
+      },
+      "codex-mini-latest": {
+        "standard": {
+          "input": 1.5,
+          "cached_input": 0.375,
+          "output": 6
+        }
+      },
+      "chat-latest": {
+        "standard": {
+          "input": 5,
+          "cached_input": 0.5,
+          "output": 30
+        }
+      },
+      "gpt-5.3-chat-latest": {
+        "standard": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14
+        }
+      },
+      "gpt-5.2-chat-latest": {
+        "standard": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14
+        }
+      },
+      "gpt-5.1-chat-latest": {
+        "standard": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10
+        }
+      },
+      "gpt-5-chat-latest": {
+        "standard": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10
+        }
+      },
+      "chatgpt-4o-latest": {
+        "standard": {
+          "input": 5,
+          "cached_input": null,
+          "output": 15
+        }
+      },
+      "gpt-5.2": {
+        "standard": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14
+        },
+        "batch": {
+          "input": 0.875,
+          "cached_input": 0.0875,
+          "output": 7
+        },
+        "priority": {
+          "input": 3.5,
+          "cached_input": 0.35,
+          "output": 28
+        }
+      },
+      "gpt-5.2-pro": {
+        "standard": {
+          "input": 21,
+          "cached_input": null,
+          "output": 168
+        },
+        "batch": {
+          "input": 10.5,
+          "cached_input": null,
+          "output": 84
+        }
+      },
+      "gpt-5.1": {
+        "standard": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10
+        },
+        "batch": {
+          "input": 0.625,
+          "cached_input": 0.0625,
+          "output": 5
+        },
+        "flex": {
+          "input": 0.625,
+          "cached_input": 0.0625,
+          "output": 5
+        },
+        "priority": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 20
+        }
+      },
+      "gpt-5": {
+        "standard": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10
+        },
+        "batch": {
+          "input": 0.625,
+          "cached_input": 0.0625,
+          "output": 5
+        },
+        "flex": {
+          "input": 0.625,
+          "cached_input": 0.0625,
+          "output": 5
+        },
+        "priority": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 20
+        }
+      },
+      "gpt-5-mini": {
+        "standard": {
+          "input": 0.25,
+          "cached_input": 0.025,
+          "output": 2
+        },
+        "batch": {
+          "input": 0.125,
+          "cached_input": 0.0125,
+          "output": 1
+        },
+        "flex": {
+          "input": 0.125,
+          "cached_input": 0.0125,
+          "output": 1
+        },
+        "priority": {
+          "input": 0.45,
+          "cached_input": 0.045,
+          "output": 3.6
+        }
+      },
+      "gpt-5-nano": {
+        "standard": {
+          "input": 0.05,
+          "cached_input": 0.005,
+          "output": 0.4
+        },
+        "batch": {
+          "input": 0.025,
+          "cached_input": 0.0025,
+          "output": 0.2
+        },
+        "flex": {
+          "input": 0.025,
+          "cached_input": 0.0025,
+          "output": 0.2
+        }
+      },
+      "gpt-5-pro": {
+        "standard": {
+          "input": 15,
+          "cached_input": null,
+          "output": 120
+        },
+        "batch": {
+          "input": 7.5,
+          "cached_input": null,
+          "output": 60
+        }
+      },
+      "gpt-4.1": {
+        "standard": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8
+        },
+        "batch": {
+          "input": 1,
+          "cached_input": null,
+          "output": 4
+        },
+        "priority": {
+          "input": 3.5,
+          "cached_input": 0.875,
+          "output": 14
+        }
+      },
+      "gpt-4.1-mini": {
+        "standard": {
+          "input": 0.4,
+          "cached_input": 0.1,
+          "output": 1.6
+        },
+        "batch": {
+          "input": 0.2,
+          "cached_input": null,
+          "output": 0.8
+        },
+        "priority": {
+          "input": 0.7,
+          "cached_input": 0.175,
+          "output": 2.8
+        }
+      },
+      "gpt-4.1-nano": {
+        "standard": {
+          "input": 0.1,
+          "cached_input": 0.025,
+          "output": 0.4
+        },
+        "batch": {
+          "input": 0.05,
+          "cached_input": null,
+          "output": 0.2
+        },
+        "priority": {
+          "input": 0.2,
+          "cached_input": 0.05,
+          "output": 0.8
+        }
+      },
+      "gpt-4o": {
+        "standard": {
+          "input": 2.5,
+          "cached_input": 1.25,
+          "output": 10
+        },
+        "batch": {
+          "input": 1.25,
+          "cached_input": null,
+          "output": 5
+        },
+        "priority": {
+          "input": 4.25,
+          "cached_input": 2.125,
+          "output": 17
+        }
+      },
+      "gpt-4o-2024-05-13": {
+        "standard": {
+          "input": 5,
+          "cached_input": null,
+          "output": 15
+        },
+        "batch": {
+          "input": 2.5,
+          "cached_input": null,
+          "output": 7.5
+        },
+        "priority": {
+          "input": 8.75,
+          "cached_input": null,
+          "output": 26.25
+        }
+      },
+      "gpt-4o-mini": {
+        "standard": {
+          "input": 0.15,
+          "cached_input": 0.075,
+          "output": 0.6
+        },
+        "batch": {
+          "input": 0.075,
+          "cached_input": null,
+          "output": 0.3
+        },
+        "priority": {
+          "input": 0.25,
+          "cached_input": 0.125,
+          "output": 1
+        }
+      },
+      "gpt-5-search-api": {
+        "standard": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10
+        }
+      },
+      "gpt-4o-search-preview": {
+        "standard": {
+          "input": 2.5,
+          "cached_input": null,
+          "output": 10
+        }
+      },
+      "gpt-4o-mini-search-preview": {
+        "standard": {
+          "input": 0.15,
+          "cached_input": null,
+          "output": 0.6
+        }
+      },
+      "o3": {
+        "standard": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8
+        },
+        "batch": {
+          "input": 1,
+          "cached_input": null,
+          "output": 4
+        },
+        "flex": {
+          "input": 1,
+          "cached_input": 0.25,
+          "output": 4
+        },
+        "priority": {
+          "input": 3.5,
+          "cached_input": 0.875,
+          "output": 14
+        }
+      },
+      "o3-pro": {
+        "standard": {
+          "input": 20,
+          "cached_input": null,
+          "output": 80
+        },
+        "batch": {
+          "input": 10,
+          "cached_input": null,
+          "output": 40
+        }
+      },
+      "o4-mini": {
+        "standard": {
+          "input": 1.1,
+          "cached_input": 0.275,
+          "output": 4.4
+        },
+        "batch": {
+          "input": 0.55,
+          "cached_input": null,
+          "output": 2.2
+        },
+        "flex": {
+          "input": 0.55,
+          "cached_input": 0.138,
+          "output": 2.2
+        },
+        "priority": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8
+        }
+      },
+      "o3-mini": {
+        "standard": {
+          "input": 1.1,
+          "cached_input": 0.55,
+          "output": 4.4
+        },
+        "batch": {
+          "input": 0.55,
+          "cached_input": null,
+          "output": 2.2
+        }
+      },
+      "o1": {
+        "standard": {
+          "input": 15,
+          "cached_input": 7.5,
+          "output": 60
+        },
+        "batch": {
+          "input": 7.5,
+          "cached_input": null,
+          "output": 30
+        }
+      },
+      "o1-pro": {
+        "standard": {
+          "input": 150,
+          "cached_input": null,
+          "output": 600
+        },
+        "batch": {
+          "input": 75,
+          "cached_input": null,
+          "output": 300
+        }
+      },
+      "o1-mini": {
+        "standard": {
+          "input": 1.1,
+          "cached_input": 0.55,
+          "output": 4.4
+        },
+        "batch": {
+          "input": 0.55,
+          "cached_input": null,
+          "output": 2.2
+        }
+      },
+      "gpt-4-turbo-2024-04-09": {
+        "standard": {
+          "input": 10,
+          "cached_input": null,
+          "output": 30
+        },
+        "batch": {
+          "input": 5,
+          "cached_input": null,
+          "output": 15
+        }
+      },
+      "gpt-4-0125-preview": {
+        "standard": {
+          "input": 10,
+          "cached_input": null,
+          "output": 30
+        },
+        "batch": {
+          "input": 5,
+          "cached_input": null,
+          "output": 15
+        }
+      },
+      "gpt-4-1106-preview": {
+        "standard": {
+          "input": 10,
+          "cached_input": null,
+          "output": 30
+        },
+        "batch": {
+          "input": 5,
+          "cached_input": null,
+          "output": 15
+        }
+      },
+      "gpt-4-1106-vision-preview": {
+        "standard": {
+          "input": 10,
+          "cached_input": null,
+          "output": 30
+        },
+        "batch": {
+          "input": 5,
+          "cached_input": null,
+          "output": 15
+        }
+      },
+      "gpt-4-0613": {
+        "standard": {
+          "input": 30,
+          "cached_input": null,
+          "output": 60
+        },
+        "batch": {
+          "input": 15,
+          "cached_input": null,
+          "output": 30
+        }
+      },
+      "gpt-4-0314": {
+        "standard": {
+          "input": 30,
+          "cached_input": null,
+          "output": 60
+        },
+        "batch": {
+          "input": 15,
+          "cached_input": null,
+          "output": 30
+        }
+      },
+      "gpt-4-32k": {
+        "standard": {
+          "input": 60,
+          "cached_input": null,
+          "output": 120
+        },
+        "batch": {
+          "input": 30,
+          "cached_input": null,
+          "output": 60
+        }
+      },
+      "gpt-3.5-turbo": {
+        "standard": {
+          "input": 0.5,
+          "cached_input": null,
+          "output": 1.5
+        }
+      },
+      "gpt-3.5-turbo-0125": {
+        "standard": {
+          "input": 0.5,
+          "cached_input": null,
+          "output": 1.5
+        },
+        "batch": {
+          "input": 0.25,
+          "cached_input": null,
+          "output": 0.75
+        }
+      },
+      "gpt-3.5-turbo-1106": {
+        "standard": {
+          "input": 1,
+          "cached_input": null,
+          "output": 2
+        },
+        "batch": {
+          "input": 1,
+          "cached_input": null,
+          "output": 2
+        }
+      },
+      "gpt-3.5-turbo-0613": {
+        "standard": {
+          "input": 1.5,
+          "cached_input": null,
+          "output": 2
+        },
+        "batch": {
+          "input": 1.5,
+          "cached_input": null,
+          "output": 2
+        }
+      },
+      "gpt-3.5-0301": {
+        "standard": {
+          "input": 1.5,
+          "cached_input": null,
+          "output": 2
+        },
+        "batch": {
+          "input": 1.5,
+          "cached_input": null,
+          "output": 2
+        }
+      },
+      "gpt-3.5-turbo-instruct": {
+        "standard": {
+          "input": 1.5,
+          "cached_input": null,
+          "output": 2
+        }
+      },
+      "gpt-3.5-turbo-16k-0613": {
+        "standard": {
+          "input": 3,
+          "cached_input": null,
+          "output": 4
+        },
+        "batch": {
+          "input": 1.5,
+          "cached_input": null,
+          "output": 2
+        }
+      },
+      "davinci-002": {
+        "standard": {
+          "input": 2,
+          "cached_input": null,
+          "output": 2
+        },
+        "batch": {
+          "input": 1,
+          "cached_input": null,
+          "output": 1
+        }
+      },
+      "babbage-002": {
+        "standard": {
+          "input": 0.4,
+          "cached_input": null,
+          "output": 0.4
+        },
+        "batch": {
+          "input": 0.2,
+          "cached_input": null,
+          "output": 0.2
+        }
+      }
+    },
+    "audio_and_realtime": {
+      "unit": "per_1m_tokens_unless_noted",
+      "gpt-realtime-1.5": {
+        "audio": {
+          "input": 32,
+          "cached_input": 0.4,
+          "output": 64
+        },
+        "text": {
+          "input": 4,
+          "cached_input": 0.4,
+          "output": 16
+        },
+        "image": {
+          "input": 5,
+          "cached_input": 0.5
+        }
+      },
+      "gpt-realtime": {
+        "audio": {
+          "input": 32,
+          "cached_input": 0.4,
+          "output": 64
+        },
+        "text": {
+          "input": 4,
+          "cached_input": 0.4,
+          "output": 16
+        },
+        "image": {
+          "input": 5,
+          "cached_input": 0.5
+        }
+      },
+      "gpt-realtime-mini": {
+        "audio": {
+          "input": 10,
+          "cached_input": 0.3,
+          "output": 20
+        },
+        "text": {
+          "input": 0.6,
+          "cached_input": 0.06,
+          "output": 2.4
+        },
+        "image": {
+          "input": 0.8,
+          "cached_input": 0.08
+        }
+      },
+      "gpt-4o-realtime-preview": {
+        "audio": {
+          "input": 40,
+          "cached_input": 2.5,
+          "output": 80
+        },
+        "text": {
+          "input": 5,
+          "cached_input": 2.5,
+          "output": 20
+        }
+      },
+      "gpt-4o-mini-realtime-preview": {
+        "audio": {
+          "input": 10,
+          "cached_input": 0.3,
+          "output": 20
+        },
+        "text": {
+          "input": 0.6,
+          "cached_input": 0.3,
+          "output": 2.4
+        }
+      },
+      "gpt-audio-1.5": {
+        "audio": {
+          "input": 32,
+          "cached_input": null,
+          "output": 64
+        },
+        "text": {
+          "input": 2.5,
+          "cached_input": null,
+          "output": 10
+        }
+      },
+      "gpt-audio": {
+        "audio": {
+          "input": 32,
+          "cached_input": null,
+          "output": 64
+        },
+        "text": {
+          "input": 2.5,
+          "cached_input": null,
+          "output": 10
+        }
+      },
+      "gpt-audio-mini": {
+        "audio": {
+          "input": 10,
+          "cached_input": null,
+          "output": 20
+        },
+        "text": {
+          "input": 0.6,
+          "cached_input": null,
+          "output": 2.4
+        }
+      },
+      "gpt-4o-audio-preview": {
+        "audio": {
+          "input": 40,
+          "cached_input": null,
+          "output": 80
+        },
+        "text": {
+          "input": 2.5,
+          "cached_input": null,
+          "output": 10
+        }
+      },
+      "gpt-4o-mini-audio-preview": {
+        "audio": {
+          "input": 10,
+          "cached_input": null,
+          "output": 20
+        },
+        "text": {
+          "input": 0.15,
+          "cached_input": null,
+          "output": 0.6
+        }
+      },
+      "gpt-4o-transcribe": {
+        "audio": {
+          "input": 2.5,
+          "output": 10
+        },
+        "estimated_cost_per_minute": 0.006
+      },
+      "gpt-4o-mini-transcribe": {
+        "audio": {
+          "input": 1.25,
+          "output": 5
+        },
+        "estimated_cost_per_minute": 0.003
+      },
+      "gpt-4o-transcribe-diarize": {
+        "audio": {
+          "input": 2.5,
+          "output": 10
+        },
+        "estimated_cost_per_minute": 0.006
+      },
+      "whisper-1": {
+        "unit": "per_minute",
+        "transcription": 0.006
+      },
+      "gpt-4o-mini-tts": {
+        "text": {
+          "input": 0.6
+        },
+        "audio": {
+          "output": 12
+        }
+      },
+      "tts-1": {
+        "unit": "per_1m_characters",
+        "text": {
+          "input": 15
+        }
+      },
+      "tts-1-hd": {
+        "unit": "per_1m_characters",
+        "text": {
+          "input": 30
+        }
+      }
+    },
+    "image_generation": {
+      "unit": "per_1m_tokens",
+      "notes": [
+        "For image generation cost estimates, OpenAI directs users to the calculator in the image generation guide."
+      ],
+      "gpt-image-2": {
+        "standard": {
+          "image": {
+            "input": 8,
+            "cached_input": 2,
+            "output": 30
+          },
+          "text": {
+            "input": 5,
+            "cached_input": 1.25,
+            "output": null
+          }
+        },
+        "batch": {
+          "image": {
+            "input": 4,
+            "cached_input": 1,
+            "output": 15
+          },
+          "text": {
+            "input": 2.5,
+            "cached_input": 0.625,
+            "output": null
+          }
+        }
+      },
+      "gpt-image-1.5": {
+        "standard": {
+          "image": {
+            "input": 8,
+            "cached_input": 2,
+            "output": 32
+          },
+          "text": {
+            "input": 5,
+            "cached_input": 1.25,
+            "output": 10
+          }
+        },
+        "batch": {
+          "image": {
+            "input": 4,
+            "cached_input": 1,
+            "output": 16
+          },
+          "text": {
+            "input": 2.5,
+            "cached_input": 0.63,
+            "output": 5
+          }
+        }
+      },
+      "gpt-image-1-mini": {
+        "standard": {
+          "image": {
+            "input": 2.5,
+            "cached_input": 0.25,
+            "output": 8
+          },
+          "text": {
+            "input": 2,
+            "cached_input": 0.2,
+            "output": null
+          }
+        },
+        "batch": {
+          "image": {
+            "input": 1.25,
+            "cached_input": 0.13,
+            "output": 4
+          },
+          "text": {
+            "input": 1,
+            "cached_input": 0.1,
+            "output": null
+          }
+        }
+      },
+      "gpt-image-1": {
+        "standard": {
+          "image": {
+            "input": 10,
+            "cached_input": 2.5,
+            "output": 40
+          },
+          "text": {
+            "input": 5,
+            "cached_input": 1.25,
+            "output": null
+          }
+        },
+        "batch": {
+          "image": {
+            "input": 5,
+            "cached_input": 1.25,
+            "output": 20
+          },
+          "text": {
+            "input": 2.5,
+            "cached_input": 0.63,
+            "output": null
+          }
+        }
+      },
+      "chatgpt-image-latest": {
+        "standard": {
+          "image": {
+            "input": 8,
+            "cached_input": 2,
+            "output": 32
+          },
+          "text": {
+            "input": 5,
+            "cached_input": 1.25,
+            "output": 10
+          }
+        },
+        "batch": {
+          "image": {
+            "input": 4,
+            "cached_input": 1,
+            "output": 16
+          },
+          "text": {
+            "input": 2.5,
+            "cached_input": 0.63,
+            "output": 5
+          }
+        }
+      }
+    },
+    "video_generation": {
+      "unit": "per_second",
+      "sora-2": {
+        "standard": {
+          "720p": 0.1
+        },
+        "batch": {
+          "720p": 0.05
+        }
+      },
+      "sora-2-pro": {
+        "standard": {
+          "720p": 0.3,
+          "1024p": 0.5,
+          "1080p": 0.7
+        },
+        "batch": {
+          "720p": 0.15,
+          "1024p": 0.25,
+          "1080p": 0.35
+        }
+      }
+    },
+    "specialized": {
+      "deep_research": {
+        "o3-deep-research": {
+          "standard": {
+            "input": 10,
+            "cached_input": 2.5,
+            "output": 40
+          },
+          "batch": {
+            "input": 5,
+            "cached_input": null,
+            "output": 20
+          }
+        },
+        "o4-mini-deep-research": {
+          "standard": {
+            "input": 2,
+            "cached_input": 0.5,
+            "output": 8
+          },
+          "batch": {
+            "input": 1,
+            "cached_input": null,
+            "output": 4
+          }
+        }
+      },
+      "computer_use": {
+        "computer-use-preview": {
+          "standard": {
+            "input": 3,
+            "cached_input": null,
+            "output": 12
+          },
+          "batch": {
+            "input": 1.5,
+            "cached_input": null,
+            "output": 6
+          }
+        }
+      },
+      "embedding": {
+        "text-embedding-3-small": {
+          "input": 0.02
+        },
+        "text-embedding-3-large": {
+          "input": 0.13
+        },
+        "text-embedding-ada-002": {
+          "input": 0.1
+        }
+      },
+      "moderation": {
+        "omni-moderation-latest": "free",
+        "text-moderation-latest": "free"
+      }
+    },
+    "tools": {
+      "web_search_preview_reasoning_models": {
+        "unit": "per_1000_calls",
+        "price": 10,
+        "note": "Search content tokens billed at model rates."
+      },
+      "web_search_preview_non_reasoning_models": {
+        "unit": "per_1000_calls",
+        "price": 25,
+        "note": "Search content tokens are free."
+      },
+      "file_search": {
+        "storage": {
+          "unit": "gb_day",
+          "price": 0.1,
+          "free_allowance_gb": 1
+        },
+        "tool_call": {
+          "unit": "per_1000_calls",
+          "price": 2.5
+        }
+      },
+      "hosted_shell_code_interpreter": {
+        "unit": "per_20_minute_session_per_container",
+        "prices_by_memory_gb": {
+          "1": 0.03,
+          "4": 0.12,
+          "16": 0.48,
+          "64": 1.92
+        }
+      }
+    }
+  },
+  "claude": {
+    "unit": "per_1m_tokens",
+    "notes": [
+      "Cache write/read prices are prompt caching prices.",
+      "Batch API is 50% off standard input and output token pricing.",
+      "Claude API US-only data residency via inference_geo has a 1.1x multiplier for Opus 4.7, Opus 4.6, and newer models."
+    ],
+    "models": {
+      "claude-opus-4-7": {
+        "input": 5,
+        "output": 25,
+        "cache_write_5m": 6.25,
+        "cache_write_1h": 10,
+        "cache_read": 0.5,
+        "batch_input": 2.5,
+        "batch_output": 12.5
+      },
+      "claude-opus-4-6": {
+        "input": 5,
+        "output": 25,
+        "cache_write_5m": 6.25,
+        "cache_write_1h": 10,
+        "cache_read": 0.5,
+        "batch_input": 2.5,
+        "batch_output": 12.5,
+        "fast_mode": {
+          "input": 30,
+          "output": 150
+        }
+      },
+      "claude-opus-4-5-20251101": {
+        "input": 5,
+        "output": 25,
+        "cache_write_5m": 6.25,
+        "cache_write_1h": 10,
+        "cache_read": 0.5,
+        "batch_input": 2.5,
+        "batch_output": 12.5
+      },
+      "claude-opus-4-1-20250805": {
+        "input": 15,
+        "output": 75,
+        "cache_write_5m": 18.75,
+        "cache_write_1h": 30,
+        "cache_read": 1.5,
+        "batch_input": 7.5,
+        "batch_output": 37.5
+      },
+      "claude-opus-4-20250514": {
+        "input": 15,
+        "output": 75,
+        "cache_write_5m": 18.75,
+        "cache_write_1h": 30,
+        "cache_read": 1.5,
+        "batch_input": 7.5,
+        "batch_output": 37.5
+      },
+      "claude-sonnet-4-6": {
+        "input": 3,
+        "output": 15,
+        "cache_write_5m": 3.75,
+        "cache_write_1h": 6,
+        "cache_read": 0.3,
+        "batch_input": 1.5,
+        "batch_output": 7.5
+      },
+      "claude-sonnet-4-5-20250929": {
+        "input": 3,
+        "output": 15,
+        "cache_write_5m": 3.75,
+        "cache_write_1h": 6,
+        "cache_read": 0.3,
+        "batch_input": 1.5,
+        "batch_output": 7.5
+      },
+      "claude-sonnet-4-20250514": {
+        "input": 3,
+        "output": 15,
+        "cache_write_5m": 3.75,
+        "cache_write_1h": 6,
+        "cache_read": 0.3,
+        "batch_input": 1.5,
+        "batch_output": 7.5
+      },
+      "claude-3-7-sonnet-20250219": {
+        "input": 3,
+        "output": 15,
+        "cache_write_5m": 3.75,
+        "cache_write_1h": 6,
+        "cache_read": 0.3,
+        "batch_input": 1.5,
+        "batch_output": 7.5
+      },
+      "claude-haiku-4-5-20251001": {
+        "input": 1,
+        "output": 5,
+        "cache_write_5m": 1.25,
+        "cache_write_1h": 2,
+        "cache_read": 0.1,
+        "batch_input": 0.5,
+        "batch_output": 2.5
+      },
+      "claude-3-5-haiku-20241022": {
+        "input": 0.8,
+        "output": 4,
+        "cache_write_5m": 1,
+        "cache_write_1h": 1.6,
+        "cache_read": 0.08,
+        "batch_input": 0.4,
+        "batch_output": 2
+      },
+      "claude-3-haiku": {
+        "input": 0.25,
+        "output": 1.25,
+        "cache_write_5m": 0.3,
+        "cache_write_1h": 0.5,
+        "cache_read": 0.03,
+        "batch_input": 0.125,
+        "batch_output": 0.625
+      }
+    }
+  },
+  "gemini": {
+    "unit": "per_1m_tokens",
+    "notes": [
+      "Gemini Developer API pricing distinguishes Free and Paid tiers; numeric prices below are Paid tier prices.",
+      "For Gemini 3.1 Pro and Gemini 2.5 Pro, long context prices apply to prompts above 200K tokens.",
+      "Batch and Flex prices are included where the official table lists them."
+    ],
+    "models": {
+      "gemini-3.1-pro-preview": {
+        "standard": {
+          "input_le_200k": 2,
+          "input_gt_200k": 4,
+          "output_le_200k": 12,
+          "output_gt_200k": 18,
+          "cache_le_200k": 0.2,
+          "cache_gt_200k": 0.4,
+          "cache_storage_per_1m_tokens_hour": 4.5
+        },
+        "batch": {
+          "input_le_200k": 1,
+          "input_gt_200k": 2,
+          "output_le_200k": 6,
+          "output_gt_200k": 9,
+          "cache_le_200k": 0.2,
+          "cache_gt_200k": 0.4,
+          "cache_storage_per_1m_tokens_hour": 4.5
+        },
+        "flex": {
+          "input_le_200k": 1,
+          "input_gt_200k": 2,
+          "output_le_200k": 6,
+          "output_gt_200k": 9,
+          "cache_le_200k": 0.2,
+          "cache_gt_200k": 0.4,
+          "cache_storage_per_1m_tokens_hour": 4.5
+        },
+        "priority": {
+          "input_le_200k": 3.6,
+          "input_gt_200k": 7.2,
+          "output_le_200k": 21.6,
+          "output_gt_200k": 32.4,
+          "cache_le_200k": 0.36,
+          "cache_gt_200k": 0.72,
+          "cache_storage_per_1m_tokens_hour": 8.1
+        }
+      },
+      "gemini-3-flash-preview": {
+        "standard": {
+          "input_text_image_video": 0.5,
+          "input_audio": 1,
+          "output": 3,
+          "cache_text_image_video": 0.05,
+          "cache_audio": 0.1,
+          "cache_storage_per_1m_tokens_hour": 1
+        },
+        "batch": {
+          "input_text_image_video": 0.25,
+          "input_audio": 0.5,
+          "output": 1.5
+        },
+        "flex": {
+          "input_text_image_video": 0.25,
+          "input_audio": 0.5,
+          "output": 1.5
+        },
+        "priority": {
+          "input_text_image_video": 0.9,
+          "input_audio": 1.8,
+          "output": 5.4,
+          "cache_text_image_video": 0.09,
+          "cache_audio": 0.18,
+          "cache_storage_per_1m_tokens_hour": 1.8
+        }
+      },
+      "gemini-3.1-flash-lite-preview": {
+        "standard": {
+          "input_text_image_video": 0.25,
+          "input_audio": 0.5,
+          "output": 1.5,
+          "cache_text_image_video": 0.025,
+          "cache_audio": 0.05,
+          "cache_storage_per_1m_tokens_hour": 1
+        },
+        "batch": {
+          "input_text_image_video": 0.125,
+          "input_audio": 0.25,
+          "output": 0.75,
+          "cache_text_image_video": 0.0125,
+          "cache_audio": 0.025,
+          "cache_storage_per_1m_tokens_hour": 0.5
+        },
+        "flex": {
+          "input_text_image_video": 0.125,
+          "input_audio": 0.25,
+          "output": 0.75,
+          "cache_text_image_video": 0.0125,
+          "cache_audio": 0.025,
+          "cache_storage_per_1m_tokens_hour": 0.5
+        },
+        "priority": {
+          "input_text_image_video": 0.45,
+          "input_audio": 0.9,
+          "output": 2.7,
+          "cache_text_image_video": 0.045,
+          "cache_audio": 0.09,
+          "cache_storage_per_1m_tokens_hour": 1.8
+        }
+      },
+      "gemini-3.1-flash-live-preview": {
+        "standard": {
+          "input_text": 0.75,
+          "input_audio": 3,
+          "input_audio_per_minute": 0.005,
+          "input_image_video": 1,
+          "input_image_video_per_minute": 0.002,
+          "output_text": 4.5,
+          "output_audio": 12,
+          "output_audio_per_minute": 0.018
+        }
+      },
+      "gemini-3.1-flash-image-preview": {
+        "standard": {
+          "input_text_image": 0.5,
+          "output_text_thinking": 3,
+          "output_image_tokens": 60
+        },
+        "batch": {
+          "input_text_image": 0.25,
+          "output_text_thinking": 1.5,
+          "output_image_tokens": 30
+        },
+        "image_output_equivalent_prices": {
+          "512px": 0.045,
+          "1024px": 0.067,
+          "2048px": 0.101,
+          "4096px": 0.151
+        }
+      },
+      "gemini-3-pro-image-preview": {
+        "standard": {
+          "input_text_image": 2,
+          "output_text_thinking": 12,
+          "output_image_tokens": 120
+        },
+        "batch": {
+          "input_text": 1,
+          "input_image": 0.0006,
+          "output_text_thinking": 6,
+          "output_image_1k_2k": 0.067,
+          "output_image_4k": 0.12
+        },
+        "flex": {
+          "input_text": 1,
+          "input_image": 0.0006,
+          "output_text_thinking": 6,
+          "output_image_1k_2k": 0.067,
+          "output_image_4k": 0.12
+        },
+        "priority": {
+          "input_text_image": 3.6,
+          "output_text_thinking": 21.6,
+          "output_image_tokens": 216
+        }
+      },
+      "gemini-3.1-flash-tts-preview": {
+        "standard": {
+          "input_text": 1,
+          "output_audio": 20
+        },
+        "batch": {
+          "input_text": 0.5,
+          "output_audio": 10
+        }
+      },
+      "gemini-2.5-pro": {
+        "standard": {
+          "input_le_200k": 1.25,
+          "input_gt_200k": 2.5,
+          "output_le_200k": 10,
+          "output_gt_200k": 15,
+          "cache_le_200k": 0.125,
+          "cache_gt_200k": 0.25,
+          "cache_storage_per_1m_tokens_hour": 4.5
+        },
+        "batch": {
+          "input_le_200k": 0.625,
+          "input_gt_200k": 1.25,
+          "output_le_200k": 5,
+          "output_gt_200k": 7.5
+        },
+        "flex": {
+          "input_le_200k": 0.625,
+          "input_gt_200k": 1.25,
+          "output_le_200k": 5,
+          "output_gt_200k": 7.5
+        },
+        "priority": {
+          "input_le_200k": 2.25,
+          "input_gt_200k": 4.5,
+          "output_le_200k": 18,
+          "output_gt_200k": 27,
+          "cache_le_200k": 0.225,
+          "cache_gt_200k": 0.45,
+          "cache_storage_per_1m_tokens_hour": 8.1
+        }
+      },
+      "gemini-2.5-flash": {
+        "standard": {
+          "input_text_image_video": 0.3,
+          "input_audio": 1,
+          "output": 2.5,
+          "cache_text_image_video": 0.03,
+          "cache_audio": 0.1,
+          "cache_storage_per_1m_tokens_hour": 1
+        },
+        "batch": {
+          "input_text_image_video": 0.15,
+          "input_audio": 0.5,
+          "output": 1.25
+        },
+        "flex": {
+          "input_text_image_video": 0.15,
+          "input_audio": 0.5,
+          "output": 1.25
+        },
+        "priority": {
+          "input_text_image_video": 0.54,
+          "input_audio": 1.8,
+          "output": 4.5,
+          "cache_text_image_video": 0.054,
+          "cache_audio": 0.18,
+          "cache_storage_per_1m_tokens_hour": 1.8
+        }
+      },
+      "gemini-2.5-flash-lite": {
+        "standard": {
+          "input_text_image_video": 0.1,
+          "input_audio": 0.3,
+          "output": 0.4,
+          "cache_text_image_video": 0.01,
+          "cache_audio": 0.03,
+          "cache_storage_per_1m_tokens_hour": 1
+        },
+        "batch": {
+          "input_text_image_video": 0.05,
+          "input_audio": 0.15,
+          "output": 0.2
+        },
+        "flex": {
+          "input_text_image_video": 0.05,
+          "input_audio": 0.15,
+          "output": 0.2
+        },
+        "priority": {
+          "input_text_image_video": 0.18,
+          "input_audio": 0.54,
+          "output": 0.72,
+          "cache_text_image_video": 0.018,
+          "cache_audio": 0.054,
+          "cache_storage_per_1m_tokens_hour": 1.8
+        }
+      },
+      "gemini-2.5-flash-image": {
+        "standard": {
+          "input_text_image": 0.3,
+          "output_image_per_image": 0.039
+        },
+        "batch": {
+          "input_text_image": 0.15,
+          "output_image_per_image": 0.0195
+        },
+        "flex": {
+          "input_text_image": 0.15,
+          "output_image_per_image": 0.0195
+        },
+        "priority": {
+          "input_text_image": 0.54,
+          "output_image_per_image": 0.0702
+        }
+      },
+      "gemini-2.5-flash-native-audio-preview-12-2025": {
+        "standard": {
+          "input_text": 0.5,
+          "input_audio_video": 3,
+          "output_text": 2,
+          "output_audio": 12
+        }
+      },
+      "gemini-2.5-flash-preview-tts": {
+        "standard": {
+          "input_text": 0.5,
+          "output_audio": 10
+        },
+        "batch": {
+          "input_text": 0.25,
+          "output_audio": 5
+        }
+      },
+      "gemini-2.5-pro-preview-tts": {
+        "standard": {
+          "input_text": 1,
+          "output_audio": 20
+        },
+        "batch": {
+          "input_text": 0.5,
+          "output_audio": 10
+        }
+      },
+      "gemini-2.0-flash": {
+        "standard": {
+          "input_text_image_video": 0.1,
+          "input_audio": 0.7,
+          "output": 0.4,
+          "cache_text_image_video": 0.025,
+          "cache_audio": 0.175,
+          "cache_storage_per_1m_tokens_hour": 1
+        },
+        "batch": {
+          "input_text_image_video": 0.05,
+          "input_audio": 0.35,
+          "output": 0.2
+        },
+        "status": "deprecated",
+        "shutdown_date": "2026-06-01"
+      },
+      "gemini-2.0-flash-lite": {
+        "standard": {
+          "input": 0.075,
+          "output": 0.3
+        },
+        "batch": {
+          "input": 0.0375,
+          "output": 0.15
+        },
+        "status": "deprecated",
+        "shutdown_date": "2026-06-01"
+      }
+    },
+    "media": {
+      "imagen-4": {
+        "unit": "per_image",
+        "fast": 0.02,
+        "standard": 0.04,
+        "ultra": 0.06
+      },
+      "veo-3.1": {
+        "unit": "per_second",
+        "standard_with_audio_720p_1080p": 0.4,
+        "standard_with_audio_4k": 0.6,
+        "fast_with_audio_720p": 0.1,
+        "fast_with_audio_1080p": 0.12,
+        "fast_with_audio_4k": 0.3,
+        "lite_with_audio_720p": 0.05,
+        "lite_with_audio_1080p": 0.08
+      },
+      "veo-3": {
+        "unit": "per_second",
+        "standard_with_audio": 0.4,
+        "fast_with_audio_720p": 0.1,
+        "fast_with_audio_1080p": 0.12,
+        "fast_with_audio_4k": 0.3
+      },
+      "veo-2": {
+        "unit": "per_second",
+        "video": 0.35
+      },
+      "lyria-3": {
+        "unit": "per_request",
+        "clip_preview_30s": 0.04,
+        "pro_preview_full_song": 0.08
+      }
+    },
+    "embeddings": {
+      "gemini-embedding-2": {
+        "text_input": 0.2,
+        "image_input": 0.45,
+        "image_input_per_image": 0.00012,
+        "audio_input": 6.5,
+        "audio_input_per_second": 0.00016,
+        "video_input": 12,
+        "video_input_per_frame": 0.00079
+      },
+      "gemini-embedding-001": {
+        "standard": {
+          "input": 0.15
+        },
+        "batch": {
+          "input": 0.075
+        }
+      }
+    },
+    "tools": {
+      "google_search_gemini_3": {
+        "free_allowance": "5000 prompts/month shared across Gemini 3",
+        "unit": "per_1000_search_queries",
+        "price": 14
+      },
+      "google_search_gemini_2_5": {
+        "free_allowance": "1500 RPD shared for Flash and Flash-Lite",
+        "unit": "per_1000_grounded_prompts",
+        "price": 35
+      },
+      "google_maps": {
+        "unit": "per_1000_grounded_prompts_or_queries",
+        "price": 25,
+        "gemini_3_price": 14
+      },
+      "file_search": {
+        "note": "Charged for embeddings at $0.15 / 1M tokens; retrieved document tokens are charged as regular model tokens."
+      }
+    }
+  },
+  "vertex": {
+    "unit": "per_1m_tokens",
+    "notes": [
+      "Google Cloud now presents Vertex/Generative AI pricing under Gemini Enterprise Agent Platform.",
+      "For current Gemini 3 and Gemini 2.5 Google models, listed prices match the Google Cloud tables. Cloud SKUs may vary by currency and region.",
+      "This section intentionally stores the Google-model subset used by the vertex model list; see the source page for partner-model regional tables."
+    ],
+    "google_models": {
+      "gemini-3.1-pro-preview": {
+        "standard": {
+          "input_le_200k": 2,
+          "input_gt_200k": 4,
+          "output_le_200k": 12,
+          "output_gt_200k": 18,
+          "cache_le_200k": 0.2,
+          "cache_gt_200k": 0.4
+        },
+        "priority": {
+          "input_le_200k": 3.6,
+          "input_gt_200k": 7.2,
+          "output_le_200k": 21.6,
+          "output_gt_200k": 32.4,
+          "cache_le_200k": 0.36,
+          "cache_gt_200k": 0.72
+        },
+        "flex_batch": {
+          "input_le_200k": 1,
+          "input_gt_200k": 2,
+          "output_le_200k": 6,
+          "output_gt_200k": 9
+        }
+      },
+      "gemini-3-flash-preview": {
+        "standard": {
+          "input_text_image_video": 0.5,
+          "input_audio": 1,
+          "output": 3,
+          "cache_text_image_video": 0.05,
+          "cache_audio": 0.1
+        },
+        "priority": {
+          "input_text_image_video": 0.9,
+          "input_audio": 1.8,
+          "output": 5.4,
+          "cache_text_image_video": 0.09,
+          "cache_audio": 0.18
+        },
+        "flex_batch": {
+          "input_text_image_video": 0.25,
+          "input_audio": 0.5,
+          "output": 1.5
+        }
+      },
+      "gemini-3.1-flash-lite-preview": {
+        "standard": {
+          "input_text_image_video": 0.25,
+          "input_audio": 0.5,
+          "output": 1.5,
+          "cache_text_image_video": 0.03,
+          "cache_audio": 0.05
+        },
+        "priority": {
+          "input_text_image_video": 0.45,
+          "input_audio": 0.9,
+          "output": 2.7,
+          "cache_text_image_video": 0.05,
+          "cache_audio": 0.09
+        },
+        "flex_batch": {
+          "input_text_image_video": 0.13,
+          "input_audio": 0.25,
+          "output": 0.75
+        }
+      },
+      "gemini-2.5-pro": {
+        "standard": {
+          "input_le_200k": 1.25,
+          "input_gt_200k": 2.5,
+          "output_le_200k": 10,
+          "output_gt_200k": 15,
+          "cache_le_200k": 0.13,
+          "cache_gt_200k": 0.25
+        },
+        "priority": {
+          "input_le_200k": 2.25,
+          "input_gt_200k": 4.5,
+          "output_le_200k": 18,
+          "output_gt_200k": 27,
+          "cache_le_200k": 0.23,
+          "cache_gt_200k": 0.45
+        },
+        "flex_batch": {
+          "input_le_200k": 0.625,
+          "input_gt_200k": 1.25,
+          "output_le_200k": 5,
+          "output_gt_200k": 7.5
+        }
+      },
+      "gemini-2.5-flash": {
+        "standard": {
+          "input_text_image_video": 0.3,
+          "input_audio": 1,
+          "output": 2.5,
+          "cache_text_image_video": 0.03,
+          "cache_audio": 0.1
+        },
+        "priority": {
+          "input_text_image_video": 0.54,
+          "input_audio": 1.8,
+          "output": 4.5,
+          "cache_text_image_video": 0.05,
+          "cache_audio": 0.18
+        },
+        "flex_batch": {
+          "input_text_image_video": 0.15,
+          "input_audio": 0.5,
+          "output": 1.25
+        }
+      },
+      "gemini-2.5-flash-lite": {
+        "standard": {
+          "input_text_image_video": 0.1,
+          "input_audio": 0.3,
+          "output": 0.4,
+          "cache_text_image_video": 0.01,
+          "cache_audio": 0.03
+        },
+        "priority": {
+          "input_text_image_video": 0.18,
+          "input_audio": 0.54,
+          "output": 0.72,
+          "cache_text_image_video": 0.02,
+          "cache_audio": 0.05
+        },
+        "flex_batch": {
+          "input_text_image_video": 0.05,
+          "input_audio": 0.15,
+          "output": 0.2
+        }
+      }
+    },
+    "partner_models": {
+      "gpt-oss-120b": {
+        "input": 0.09,
+        "output": 0.36,
+        "batch_input": 0.045,
+        "batch_output": 0.18
+      },
+      "gpt-oss-20b": {
+        "input": 0.07,
+        "output": 0.25,
+        "cache_hit": 0.007,
+        "batch_input": 0.035,
+        "batch_output": 0.125
+      },
+      "kimi-k2-thinking": {
+        "input": 0.6,
+        "output": 2.5,
+        "cache_hit": 0.06
+      }
+    }
+  },
+  "kimi": {
+    "unit": "per_1m_tokens",
+    "models": {
+      "kimi-k2.6": {
+        "input_cache_hit": 0.16,
+        "input_cache_miss": 0.95,
+        "output": 4,
+        "context_window": 262144
+      },
+      "kimi-k2.5": {
+        "input_cache_hit": 0.1,
+        "input_cache_miss": 0.6,
+        "output": 3,
+        "context_window": 262144
+      },
+      "kimi-k2-0905-preview": {
+        "input_cache_hit": 0.15,
+        "input_cache_miss": 0.6,
+        "output": 2.5,
+        "context_window": 262144,
+        "status": "deprecated",
+        "retirement_date": "2026-05-25"
+      },
+      "kimi-k2-0711-preview": {
+        "input_cache_hit": 0.15,
+        "input_cache_miss": 0.6,
+        "output": 2.5,
+        "context_window": 131072,
+        "status": "deprecated",
+        "retirement_date": "2026-05-25"
+      },
+      "kimi-k2-turbo-preview": {
+        "input_cache_hit": 0.15,
+        "input_cache_miss": 1.15,
+        "output": 8,
+        "context_window": 262144,
+        "status": "deprecated",
+        "retirement_date": "2026-05-25"
+      },
+      "kimi-k2-thinking": {
+        "input_cache_hit": 0.15,
+        "input_cache_miss": 0.6,
+        "output": 2.5,
+        "context_window": 262144,
+        "status": "deprecated",
+        "retirement_date": "2026-05-25"
+      },
+      "kimi-k2-thinking-turbo": {
+        "input_cache_hit": 0.15,
+        "input_cache_miss": 1.15,
+        "output": 8,
+        "context_window": 262144,
+        "status": "deprecated",
+        "retirement_date": "2026-05-25"
+      },
+      "moonshot-v1-8k": {
+        "input": 0.2,
+        "output": 2,
+        "context_window": 8192
+      },
+      "moonshot-v1-32k": {
+        "input": 1,
+        "output": 3,
+        "context_window": 32768
+      },
+      "moonshot-v1-128k": {
+        "input": 2,
+        "output": 5,
+        "context_window": 131072
+      },
+      "moonshot-v1-8k-vision-preview": {
+        "input": 0.2,
+        "output": 2,
+        "context_window": 8192
+      },
+      "moonshot-v1-32k-vision-preview": {
+        "input": 1,
+        "output": 3,
+        "context_window": 32768
+      },
+      "moonshot-v1-128k-vision-preview": {
+        "input": 2,
+        "output": 5,
+        "context_window": 131072
+      }
+    }
+  },
+  "antigravity": {
+    "unit": "plan_price",
+    "models_are_plan_entitlements": true,
+    "plans": {
+      "individual": {
+        "price_per_month": 0,
+        "status": "generally_available",
+        "included_agent_models": [
+          "Gemini 3.1 Pro",
+          "Gemini 3 Flash",
+          "Claude Sonnet 4.6",
+          "Claude Opus 4.6",
+          "gpt-oss-120b"
+        ],
+        "included_features": [
+          "Unlimited Tab completions",
+          "Unlimited Command requests",
+          "Generous weekly rate limits"
+        ]
+      },
+      "developer": {
+        "price": "via Google One",
+        "status": "recommended",
+        "included_features": [
+          "Everything in Individual",
+          "More generous rate limits",
+          "Flexible AI credit pool"
+        ]
+      },
+      "organization": {
+        "price": "via Google Cloud",
+        "status": "coming_soon"
+      }
+    }
+  },
+  "xai": {
+    "currency": "USD",
+    "unit": "per_1m_tokens_unless_noted",
+    "models": {
+      "grok-4.3": {
+        "input": 1.25,
+        "cached_input": 0.2,
+        "output": 2.5,
+        "long_context_input": 2.5,
+        "long_context_cached_input": 0.4,
+        "long_context_output": 5,
+        "context_window": 1000000,
+        "long_context_threshold": 200000,
+        "batch_discount_percent": 20
+      }
+    },
+    "tools_per_1000_calls": {
+      "web_search": 5,
+      "x_search": 5,
+      "code_execution": 5,
+      "code_interpreter": 5,
+      "attachment_search": 10,
+      "collections_search": 2.5,
+      "file_search": 2.5
+    },
+    "batch_discount": "20%-50% off standard token rates for text and language models",
+    "storage": {
+      "effective_date": "2026-04-20",
+      "file_storage_per_gib_day": 0.025,
+      "collection_storage_per_gib_day": 0.1,
+      "downloads_per_gib": 0.2
+    },
+    "usage_guideline_violation_fee_per_request": 0.05
+  },
+  "deepseek": {
+    "currency": "USD",
+    "unit": "per_1m_tokens",
+    "models": {
+      "deepseek-v4-flash": {
+        "input_cache_hit": 0.0028,
+        "input_cache_miss": 0.14,
+        "output": 0.28
+      },
+      "deepseek-v4-pro": {
+        "input_cache_hit": 0.003625,
+        "input_cache_hit_list": 0.0145,
+        "input_cache_miss": 0.435,
+        "input_cache_miss_list": 1.74,
+        "output": 0.87,
+        "output_list": 3.48,
+        "discounted_until": "2026-05-31T15:59:00Z"
+      }
+    }
+  },
+  "mistral": {
+    "currency": "USD",
+    "unit": "per_1m_tokens_unless_noted",
+    "models": {
+      "mistral-large-latest": {
+        "input": 0.5,
+        "output": 1.5
+      },
+      "mistral-medium-latest": {
+        "input": 1.5,
+        "output": 7.5
+      },
+      "mistral-small-latest": {
+        "input": 0.15,
+        "output": 0.6,
+        "note": "Official pricing page also contains an older Mistral Small 3.2 card for the same endpoint at $0.10 input and $0.30 output; current Mistral Small 4 card is recorded."
+      },
+      "devstral-medium-latest": {
+        "input": 0.4,
+        "output": 2
+      },
+      "devstral-small-latest": {
+        "input": 0.1,
+        "output": 0.3
+      },
+      "codestral-latest": {
+        "output": 0.9,
+        "note": "Pricing card lists output price only."
+      },
+      "labs-leanstral-2603": {
+        "price": "free"
+      },
+      "magistral-medium-latest": {
+        "input": 2,
+        "output": 5
+      },
+      "magistral-small-latest": {
+        "input": 0.5,
+        "output": 1.5
+      },
+      "ministral-3b-latest": {
+        "input": 0.1,
+        "output": 0.1
+      },
+      "ministral-8b-latest": {
+        "input": 0.15,
+        "output": 0.15
+      },
+      "ministral-14b-latest": {
+        "input": 0.2,
+        "output": 0.2
+      },
+      "voxtral-small-latest": {
+        "audio_input_per_minute": 0.004,
+        "text_input": 0.1,
+        "output": 0.3
+      },
+      "voxtral-mini-latest": {
+        "audio_input_per_minute": 0.001,
+        "text_input": 0.04,
+        "output": 0.04,
+        "realtime_audio_input_per_minute": 0.006,
+        "transcription_audio_input_per_minute": 0.003
+      },
+      "mistral-moderation-2603": {
+        "input": 0.1
+      },
+      "codestral-embed-2505": {
+        "input": 0.15
+      },
+      "mistral-embed": {
+        "input": 0.1
+      },
+      "pixtral-large-latest": {
+        "input": 2,
+        "output": 6
+      },
+      "pixtral-12b": {
+        "input": 0.15,
+        "output": 0.15
+      },
+      "open-mistral-nemo": {
+        "input": 0.15,
+        "output": 0.15
+      },
+      "open-mistral-7b": {
+        "input": 0.25,
+        "output": 0.25
+      },
+      "open-mixtral-8x7b": {
+        "input": 0.7,
+        "output": 0.7
+      },
+      "open-mixtral-8x22b": {
+        "input": 2,
+        "output": 6
+      }
+    },
+    "ocr": {
+      "mistral-ocr-latest": {
+        "unit": "per_1000_pages",
+        "price": 2,
+        "batch_discount": "50% off with batch APIs"
+      }
+    },
+    "tts": {
+      "voxtral-mini-tts-2603": {
+        "unit": "per_1000_characters",
+        "audio_generation": 0.016
+      }
+    }
+  },
+  "cohere": {
+    "currency": "USD",
+    "unit": "per_1m_tokens_unless_noted",
+    "models": {
+      "command-a-03-2025": {
+        "input": 2.5,
+        "output": 10
+      },
+      "command-r7b-12-2024": {
+        "input": 0.0375,
+        "output": 0.15
+      },
+      "command-r-08-2024": {
+        "input": 0.15,
+        "output": 0.6
+      },
+      "command-r-plus-08-2024": {
+        "input": 2.5,
+        "output": 10,
+        "source_note": "Official pricing FAQ lists Command R+ 08-2024 at $2.50 input and $10 output per 1M tokens."
+      },
+      "command-r-03-2024": {
+        "input": 0.5,
+        "output": 1.5,
+        "status": "deprecated"
+      },
+      "command-r-plus-04-2024": {
+        "input": 3,
+        "output": 15,
+        "status": "deprecated"
+      },
+      "command": {
+        "input": 1,
+        "output": 2,
+        "status": "legacy"
+      },
+      "command-light": {
+        "input": 0.3,
+        "output": 0.6,
+        "status": "legacy"
+      },
+      "embed-v4.0": {
+        "input": 0.12,
+        "image_cost": 0.47
+      },
+      "rerank-v4.0-fast": {
+        "unit": "per_1000_searches",
+        "cost": 2
+      },
+      "rerank-v4.0-pro": {
+        "unit": "per_1000_searches",
+        "cost": 2.5
+      }
+    },
+    "notes": [
+      "Cohere docs state generative models are per-token, embeddings per token, and rerank per search; pricing page values are recorded where extractable from official page data."
+    ]
+  },
+  "perplexity": {
+    "currency": "USD",
+    "unit": "per_1m_tokens_unless_noted",
+    "models": {
+      "sonar": {
+        "input": 1,
+        "output": 1
+      },
+      "sonar-pro": {
+        "input": 3,
+        "output": 15
+      },
+      "sonar-reasoning-pro": {
+        "input": 2,
+        "output": 8
+      },
+      "sonar-deep-research": {
+        "input": 2,
+        "output": 8,
+        "citation": 2,
+        "search_queries_per_1000": 5,
+        "reasoning": 3
+      }
+    },
+    "request_fees_per_1000": {
+      "sonar": {
+        "low": 5,
+        "medium": 8,
+        "high": 12
+      },
+      "sonar-pro": {
+        "low": 6,
+        "medium": 10,
+        "high": 14
+      },
+      "sonar-reasoning-pro": {
+        "low": 6,
+        "medium": 10,
+        "high": 14
+      }
+    },
+    "pro_search_request_fees_per_1000": {
+      "fast": {
+        "low": 6,
+        "medium": 10,
+        "high": 14
+      },
+      "pro": {
+        "low": 14,
+        "medium": 18,
+        "high": 22
+      },
+      "auto": "varies_by_classification"
+    },
+    "tools": {
+      "web_search_per_invocation": 0.005,
+      "fetch_url_per_invocation": 0.0005
+    },
+    "search_api": {
+      "unit": "per_1000_requests",
+      "price": 5
+    },
+    "embeddings": {
+      "pplx-embed-v1-0.6b": {
+        "dimensions": 1024,
+        "input": 0.004
+      },
+      "pplx-embed-v1-4b": {
+        "dimensions": 2560,
+        "input": 0.03
+      },
+      "pplx-embed-context-v1-0.6b": {
+        "dimensions": 1024,
+        "input": 0.008
+      },
+      "pplx-embed-context-v1-4b": {
+        "dimensions": 2560,
+        "input": 0.05
+      }
+    }
+  },
+  "qwen": {
+    "currency": "CNY",
+    "unit": "per_1m_tokens_unless_noted",
+    "models": {
+      "qwen3.6-max-preview": {
+        "tiers": [
+          {
+            "input_tokens": "0<Token<=128K",
+            "input": 9,
+            "output": 54
+          },
+          {
+            "input_tokens": "128K<Token<=256K",
+            "input": 15,
+            "output": 90
+          }
+        ]
+      },
+      "qwen3.6-plus": {
+        "tiers": [
+          {
+            "input_tokens": "0<Token<=256K",
+            "input": 2,
+            "output_non_thinking": 12,
+            "output_thinking": 12
+          },
+          {
+            "input_tokens": "256K<Token<=1M",
+            "input": 8,
+            "output_non_thinking": 48,
+            "output_thinking": 48
+          }
+        ]
+      },
+      "qwen3.6-plus-2026-04-02": {
+        "tiers": [
+          {
+            "input_tokens": "0<Token<=256K",
+            "input": 2,
+            "output_non_thinking": 12,
+            "output_thinking": 12
+          },
+          {
+            "input_tokens": "256K<Token<=1M",
+            "input": 8,
+            "output_non_thinking": 48,
+            "output_thinking": 48
+          }
+        ]
+      },
+      "qwen3.6-flash": {
+        "tiers": [
+          {
+            "input_tokens": "0<Token<=256K",
+            "input": 1.2,
+            "output": 7.2
+          },
+          {
+            "input_tokens": "256K<Token<=1M",
+            "input": 4.8,
+            "output": 28.8
+          }
+        ],
+        "batch_discount": "50% of realtime inference price where Batch is supported"
+      },
+      "qwen3.6-flash-2026-04-16": {
+        "tiers": [
+          {
+            "input_tokens": "0<Token<=256K",
+            "input": 1.2,
+            "output": 7.2
+          },
+          {
+            "input_tokens": "256K<Token<=1M",
+            "input": 4.8,
+            "output": 28.8
+          }
+        ]
+      },
+      "qwen3.5-plus": {
+        "tiers": [
+          {
+            "input_tokens": "0<Token<=128K",
+            "input": 0.8,
+            "output_non_thinking": 4.8,
+            "output_thinking": 4.8
+          },
+          {
+            "input_tokens": "128K<Token<=256K",
+            "input": 2,
+            "output_non_thinking": 12,
+            "output_thinking": 12
+          },
+          {
+            "input_tokens": "256K<Token<=1M",
+            "input": 4,
+            "output_non_thinking": 24,
+            "output_thinking": 24
+          }
+        ]
+      },
+      "qwen3.5-flash": {
+        "tiers": [
+          {
+            "input_tokens": "0<Token<=128K",
+            "input": 0.2,
+            "output": 2
+          },
+          {
+            "input_tokens": "128K<Token<=256K",
+            "input": 0.8,
+            "output": 8
+          },
+          {
+            "input_tokens": "256K<Token<=1M",
+            "input": 1.2,
+            "output": 12
+          }
+        ]
+      },
+      "text-embedding-v4": {
+        "input": 0.5
+      },
+      "qwen3-rerank": {
+        "input": 0.5
+      }
+    }
+  },
+  "qianfan": {
+    "currency": "CNY",
+    "unit": "per_1k_tokens_unless_noted",
+    "models": {
+      "ernie-5.0": {
+        "tiers": [
+          {
+            "input_tokens": "input<=32K",
+            "input": 0.006,
+            "output": 0.024
+          },
+          {
+            "input_tokens": "32K<input<=128K",
+            "input": 0.01,
+            "output": 0.04
+          }
+        ]
+      },
+      "ernie-5.0-thinking-preview": {
+        "tiers": [
+          {
+            "input_tokens": "input<=32K",
+            "input": 0.006,
+            "output": 0.024
+          },
+          {
+            "input_tokens": "32K<input<=128K",
+            "input": 0.01,
+            "output": 0.04
+          }
+        ]
+      },
+      "ernie-5.0-thinking-latest": {
+        "tiers": [
+          {
+            "input_tokens": "input<=32K",
+            "input": 0.006,
+            "output": 0.024
+          },
+          {
+            "input_tokens": "32K<input<=128K",
+            "input": 0.01,
+            "output": 0.04
+          }
+        ]
+      },
+      "ernie-4.5-turbo-128k": {
+        "input": 0.0008,
+        "cached_input": 0.0002,
+        "output": 0.0032,
+        "batch_input": 0.00032,
+        "batch_output": 0.00128
+      },
+      "ernie-4.5-turbo-32k": {
+        "input": 0.0008,
+        "cached_input": 0.0002,
+        "output": 0.0032,
+        "batch_input": 0.00032,
+        "batch_output": 0.00128
+      },
+      "ernie-4.5-turbo-vl": {
+        "input": 0.003,
+        "output": 0.009,
+        "batch_input": 0.0012,
+        "batch_output": 0.0036
+      },
+      "ernie-x1.1-preview": {
+        "input": 0.001,
+        "output": 0.004
+      },
+      "ernie-x1-turbo-32k": {
+        "input": 0.001,
+        "output": 0.004,
+        "batch_input": 0.0004,
+        "batch_output": 0.0016
+      },
+      "embedding-v1": {
+        "input": 0.0005
+      },
+      "bce-reranker-base": {
+        "input": 0.0005
+      }
+    },
+    "tools": {
+      "search_enhancement_per_call": 0.004
+    }
+  },
+  "hunyuan": {
+    "currency": "CNY",
+    "unit": "per_1m_tokens_unless_noted",
+    "models": {
+      "hunyuan-2.0-thinking-20251109": {
+        "tiers": [
+          {
+            "input_tokens": "0<input<=32K",
+            "input": 3.975,
+            "output": 15.9
+          },
+          {
+            "input_tokens": "32K<input<=128K",
+            "input": 5.3,
+            "output": 21.2
+          }
+        ]
+      },
+      "hunyuan-2.0-instruct-20251111": {
+        "tiers": [
+          {
+            "input_tokens": "0<input<=32K",
+            "input": 3.18,
+            "output": 7.95
+          },
+          {
+            "input_tokens": "32K<input<=128K",
+            "input": 4.505,
+            "output": 11.13
+          }
+        ]
+      },
+      "hunyuan-t1-latest": {
+        "input": 1,
+        "output": 4
+      },
+      "hunyuan-turbos-latest": {
+        "input": 0.8,
+        "output": 2
+      },
+      "hunyuan-a13b": {
+        "input": 0.5,
+        "output": 2
+      },
+      "hunyuan-large-role-latest": {
+        "input": 2.4,
+        "output": 9.6
+      },
+      "hunyuan-translation": {
+        "input": 1.2,
+        "output": 3.6
+      },
+      "hunyuan-translation-lite": {
+        "input": 1,
+        "output": 3
+      },
+      "hunyuan-vision-1.5-instruct": {
+        "input": 3,
+        "output": 9
+      },
+      "hunyuan-turbos-vision-video": {
+        "input": 3,
+        "output": 9
+      },
+      "hunyuan-t1-vision-20250916": {
+        "input": 3,
+        "output": 9
+      },
+      "hunyuan-embedding": {
+        "input": 0.7,
+        "output": 0.7
+      },
+      "hunyuan-lite": {
+        "price": "free"
+      }
+    },
+    "prepaid_packages": {
+      "unit": "points",
+      "packages": {
+        "10000_points": 100,
+        "100000_points": 950,
+        "1000000_points": 9000,
+        "10000000_points": 85000,
+        "100000000_points": 800000
+      }
+    },
+    "concurrency_add_on_per_concurrency_month": 800
+  },
+  "zai": {
+    "currency": "USD",
+    "unit": "per_1m_tokens_unless_noted",
+    "models": {
+      "glm-5.1": {
+        "input": 1.4,
+        "cached_input": 0.26,
+        "cached_input_storage": "limited_time_free",
+        "output": 4.4
+      },
+      "glm-5": {
+        "input": 1,
+        "cached_input": 0.2,
+        "cached_input_storage": "limited_time_free",
+        "output": 3.2
+      },
+      "glm-5-turbo": {
+        "input": 1.2,
+        "cached_input": 0.24,
+        "cached_input_storage": "limited_time_free",
+        "output": 4
+      },
+      "glm-4.7": {
+        "input": 0.6,
+        "cached_input": 0.11,
+        "cached_input_storage": "limited_time_free",
+        "output": 2.2
+      },
+      "glm-4.7-flashx": {
+        "input": 0.07,
+        "cached_input": 0.01,
+        "cached_input_storage": "limited_time_free",
+        "output": 0.4
+      },
+      "glm-4.6": {
+        "input": 0.6,
+        "cached_input": 0.11,
+        "cached_input_storage": "limited_time_free",
+        "output": 2.2
+      },
+      "glm-4.5": {
+        "input": 0.6,
+        "cached_input": 0.11,
+        "cached_input_storage": "limited_time_free",
+        "output": 2.2
+      },
+      "glm-4.5-x": {
+        "input": 2.2,
+        "cached_input": 0.45,
+        "cached_input_storage": "limited_time_free",
+        "output": 8.9
+      },
+      "glm-4.5-air": {
+        "input": 0.2,
+        "cached_input": 0.03,
+        "cached_input_storage": "limited_time_free",
+        "output": 1.1
+      },
+      "glm-4.5-airx": {
+        "input": 1.1,
+        "cached_input": 0.22,
+        "cached_input_storage": "limited_time_free",
+        "output": 4.5
+      },
+      "glm-4-32b-0414-128k": {
+        "input": 0.1,
+        "output": 0.1
+      },
+      "glm-4.7-flash": {
+        "price": "free"
+      },
+      "glm-4.5-flash": {
+        "price": "free"
+      },
+      "glm-5v-turbo": {
+        "input": 1.2,
+        "cached_input": 0.24,
+        "cached_input_storage": "limited_time_free",
+        "output": 4
+      },
+      "glm-4.6v": {
+        "input": 0.3,
+        "cached_input": 0.05,
+        "cached_input_storage": "limited_time_free",
+        "output": 0.9
+      },
+      "glm-ocr": {
+        "input": 0.03,
+        "output": 0.03
+      },
+      "glm-image": {
+        "unit": "per_image",
+        "price": 0.015
+      },
+      "cogview-4": {
+        "unit": "per_image",
+        "price": 0.01
+      },
+      "cogvideox-3": {
+        "unit": "per_video",
+        "price": 0.2
+      },
+      "glm-asr-2512": {
+        "unit": "per_1m_tokens",
+        "price": 0.03,
+        "estimated_per_minute": 0.0024
+      }
+    },
+    "tools": {
+      "web_search_per_use": 0.01
+    }
+  },
+  "minimax": {
+    "currency": "USD",
+    "unit": "per_1m_tokens_unless_noted",
+    "models": {
+      "MiniMax-M2.7": {
+        "input": 0.3,
+        "output": 1.2,
+        "prompt_cache_read": 0.06,
+        "prompt_cache_write": 0.375
+      },
+      "MiniMax-M2.7-highspeed": {
+        "input": 0.6,
+        "output": 2.4,
+        "prompt_cache_read": 0.06,
+        "prompt_cache_write": 0.375
+      },
+      "MiniMax-M2.5": {
+        "input": 0.3,
+        "output": 1.2,
+        "prompt_cache_read": 0.03,
+        "prompt_cache_write": 0.375
+      },
+      "MiniMax-M2.5-highspeed": {
+        "input": 0.6,
+        "output": 2.4,
+        "prompt_cache_read": 0.03,
+        "prompt_cache_write": 0.375
+      },
+      "M2-her": {
+        "input": 0.3,
+        "output": 1.2
+      },
+      "MiniMax-M2.1": {
+        "input": 0.3,
+        "output": 1.2,
+        "prompt_cache_read": 0.03,
+        "prompt_cache_write": 0.375
+      },
+      "MiniMax-M2.1-highspeed": {
+        "input": 0.6,
+        "output": 2.4,
+        "prompt_cache_read": 0.03,
+        "prompt_cache_write": 0.375
+      },
+      "MiniMax-M2": {
+        "input": 0.3,
+        "output": 1.2,
+        "prompt_cache_read": 0.03,
+        "prompt_cache_write": 0.375
+      },
+      "speech-2.8-turbo": {
+        "unit": "per_1m_characters",
+        "price": 60
+      },
+      "speech-2.8-hd": {
+        "unit": "per_1m_characters",
+        "price": 100
+      },
+      "MiniMax-Hailuo-2.3-Fast": {
+        "unit": "per_video",
+        "variants": {
+          "768p_6s": 0.19,
+          "768p_10s": 0.32,
+          "1080p_6s": 0.33
+        }
+      },
+      "MiniMax-Hailuo-2.3": {
+        "unit": "per_video",
+        "variants": {
+          "768p_6s": 0.28,
+          "768p_10s": 0.56,
+          "1080p_6s": 0.49
+        }
+      },
+      "MiniMax-Hailuo-02": {
+        "unit": "per_video",
+        "variants": {
+          "768p_6s": 0.28,
+          "768p_10s": 0.56,
+          "1080p_6s": 0.49,
+          "512p_6s": 0.1,
+          "512p_10s": 0.15
+        }
+      },
+      "music-2.6": {
+        "unit": "per_up_to_5_min_music",
+        "price": 0.15,
+        "note": "Free for two weeks per official page."
+      },
+      "image-01": {
+        "unit": "per_image",
+        "price": 0.0035
+      },
+      "API-vlm": {
+        "unit": "per_request",
+        "input_price": 0.06
+      }
+    },
+    "voice_clone_per_voice": 1.5,
+    "voice_design_per_voice": 3
+  },
+  "ai21": {
+    "currency": "USD",
+    "unit": "per_1m_tokens",
+    "models": {
+      "jamba-mini": {
+        "input": 0.2,
+        "output": 0.4
+      },
+      "jamba-mini-2-2026-01": {
+        "input": 0.2,
+        "output": 0.4
+      },
+      "jamba-large": {
+        "input": 2,
+        "output": 8
+      },
+      "jamba-large-1.7-2025-07": {
+        "input": 2,
+        "output": 8
+      }
+    },
+    "free_trial_credit": {
+      "amount": 10,
+      "currency": "USD",
+      "valid_for": "3 months"
+    }
+  }
+}

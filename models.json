@@ -1,0 +1,4242 @@
+{
+  "_meta": {
+    "schema_version": "1.1.0",
+    "updated_at": "2026-05-07",
+    "description": "Official-source model registry for API models and product-scoped model availability.",
+    "source_policy": "Use only official provider documentation, official pricing pages, or official product entitlement pages. Do not infer unpublished model IDs or prices.",
+    "status_values": [
+      "current",
+      "stable",
+      "preview",
+      "experimental",
+      "legacy",
+      "deprecated",
+      "alias"
+    ],
+    "notes": [
+      "Root keys other than _meta are provider or product scopes; each scope value is an array of model objects.",
+      "Product scopes such as codex-*, gemini-cli, aistudio, and antigravity reflect availability or entitlements, not separate model vendors.",
+      "Legacy and snapshot entries are retained when official model or pricing pages still list them.",
+      "When consuming this file, ignore _meta or explicitly select root values whose type is array.",
+      "Root scopes can be direct model vendors, cloud model platforms, or product entitlement scopes; use _meta.scope_types when a consumer must distinguish them.",
+      "A provider scope is expanded only from official model/pricing documentation. Aggregators are excluded unless added as their own clearly labeled scope.",
+      "Chinese cloud/platform pricing is recorded in CNY with the official per-token unit when the source uses CNY."
+    ],
+    "sources": {
+      "openai_models": "https://developers.openai.com/api/docs/models/all",
+      "openai_pricing": "https://developers.openai.com/api/docs/pricing",
+      "openai_latest_model": "https://developers.openai.com/api/docs/guides/latest-model.md",
+      "claude_models": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
+      "claude_pricing": "https://platform.claude.com/docs/en/about-claude/pricing.md",
+      "gemini_models": "https://ai.google.dev/gemini-api/docs/models",
+      "gemini_pricing": "https://ai.google.dev/gemini-api/docs/pricing",
+      "vertex_pricing": "https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing",
+      "kimi_models": "https://platform.kimi.ai/docs/models.md",
+      "kimi_pricing": "https://platform.kimi.ai/docs/pricing/chat",
+      "antigravity_pricing": "https://antigravity.google/pricing",
+      "xai_models_pricing": "https://docs.x.ai/developers/models.md",
+      "deepseek_models_pricing": "https://api-docs.deepseek.com/quick_start/pricing",
+      "mistral_models": "https://docs.mistral.ai/docs/getting-started/models/overview.md",
+      "mistral_pricing": "https://mistral.ai/pricing",
+      "cohere_models": "https://docs.cohere.com/docs/models.md",
+      "cohere_pricing_docs": "https://docs.cohere.com/docs/how-does-cohere-pricing-work.md",
+      "cohere_pricing": "https://cohere.com/pricing",
+      "perplexity_pricing": "https://docs.perplexity.ai/docs/getting-started/pricing.md",
+      "perplexity_openapi": "https://docs.perplexity.ai/openapi.json",
+      "qwen_models": "https://help.aliyun.com/zh/model-studio/text-generation-model/",
+      "qwen_pricing": "https://help.aliyun.com/zh/model-studio/billing/",
+      "qianfan_models": "https://cloud.baidu.com/doc/qianfan-docs/s/7m95lyy43",
+      "qianfan_pricing": "https://cloud.baidu.com/doc/qianfan-docs/s/Jm8r1826a",
+      "hunyuan_models": "https://cloud.tencent.com/document/product/1729/104753",
+      "hunyuan_pricing": "https://cloud.tencent.com/document/product/1729/97731",
+      "zai_models": "https://docs.z.ai/guides/overview/overview",
+      "zai_pricing": "https://docs.z.ai/guides/overview/pricing",
+      "minimax_models": "https://platform.minimax.io/docs/guides/text-generation",
+      "minimax_pricing": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "ai21_models": "https://docs.ai21.com/docs/jamba-foundation-models",
+      "ai21_pricing": "https://www.ai21.com/pricing/"
+    },
+    "scope_types": {
+      "direct_model_providers": [
+        "openai",
+        "claude",
+        "gemini",
+        "kimi",
+        "xai",
+        "deepseek",
+        "mistral",
+        "cohere",
+        "perplexity",
+        "zai",
+        "minimax",
+        "ai21"
+      ],
+      "cloud_or_model_platforms": [
+        "vertex",
+        "qwen",
+        "qianfan",
+        "hunyuan",
+        "aistudio"
+      ],
+      "product_entitlement_scopes": [
+        "gemini-cli",
+        "codex-free",
+        "codex-team",
+        "codex-plus",
+        "codex-pro",
+        "antigravity"
+      ],
+      "aggregators": []
+    }
+  },
+  "openai": [
+    {
+      "id": "gpt-5.5",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.5",
+      "description": "Frontier model for complex reasoning, coding, and professional work.",
+      "context_length": 1050000,
+      "max_completion_tokens": 128000,
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "levels": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "default": "medium"
+      }
+    },
+    {
+      "id": "gpt-5.5-pro",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.5 pro",
+      "description": "Higher-compute GPT-5.5 variant for harder reasoning tasks.",
+      "context_length": 1050000,
+      "max_completion_tokens": 128000,
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "levels": [
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    },
+    {
+      "id": "gpt-5.4",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.4",
+      "description": "Frontier model for complex professional work.",
+      "context_length": 1050000,
+      "max_completion_tokens": 128000,
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "levels": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "default": "none"
+      }
+    },
+    {
+      "id": "gpt-5.4-pro",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.4 pro",
+      "description": "Higher-compute GPT-5.4 variant for harder reasoning tasks.",
+      "context_length": 1050000,
+      "max_completion_tokens": 128000,
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "levels": [
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    },
+    {
+      "id": "gpt-5.4-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.4 mini",
+      "description": "Efficient GPT-5.4-class model for high-volume workloads.",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "levels": [
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    },
+    {
+      "id": "gpt-5.4-nano",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.4 nano",
+      "description": "Lowest-cost GPT-5.4-class model for simple high-volume tasks.",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "levels": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    },
+    {
+      "id": "gpt-5.3-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.3-Codex",
+      "description": "Agentic coding model optimized for Codex-like environments.",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "levels": [
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    },
+    {
+      "id": "gpt-5-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5-Codex",
+      "description": "Deprecated GPT-5 model optimized for agentic coding in Codex.",
+      "status": "deprecated",
+      "category": "coding"
+    },
+    {
+      "id": "gpt-5.2-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.2-Codex",
+      "description": "Deprecated coding model optimized for long-horizon agentic coding tasks.",
+      "status": "deprecated",
+      "category": "coding"
+    },
+    {
+      "id": "gpt-5.1-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.1 Codex",
+      "description": "Deprecated GPT-5.1 model optimized for agentic coding in Codex.",
+      "status": "deprecated",
+      "category": "coding"
+    },
+    {
+      "id": "gpt-5.1-codex-max",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.1-Codex-Max",
+      "description": "Deprecated GPT-5.1 Codex variant optimized for long-running tasks.",
+      "status": "deprecated",
+      "category": "coding"
+    },
+    {
+      "id": "gpt-5.1-codex-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.1 Codex mini",
+      "description": "Deprecated smaller Codex model.",
+      "status": "deprecated",
+      "category": "coding"
+    },
+    {
+      "id": "codex-mini-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "codex-mini-latest",
+      "description": "Deprecated fast reasoning model optimized for the Codex CLI.",
+      "status": "deprecated",
+      "category": "coding"
+    },
+    {
+      "id": "gpt-5.3-chat-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.3 Chat",
+      "description": "GPT-5.3 Instant model used in ChatGPT; not recommended as a general API default.",
+      "context_length": 128000,
+      "max_completion_tokens": 16384,
+      "status": "current",
+      "category": "chatgpt"
+    },
+    {
+      "id": "chat-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "chat-latest",
+      "description": "Latest Instant model used in ChatGPT; not recommended as a general API default.",
+      "status": "current",
+      "category": "chatgpt"
+    },
+    {
+      "id": "gpt-5.2-chat-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.2 Chat",
+      "description": "GPT-5.2 model used in ChatGPT; not recommended as a general API default.",
+      "status": "current",
+      "category": "chatgpt"
+    },
+    {
+      "id": "gpt-5.1-chat-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.1 Chat",
+      "description": "Deprecated GPT-5.1 model used in ChatGPT.",
+      "status": "deprecated",
+      "category": "chatgpt"
+    },
+    {
+      "id": "gpt-5-chat-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5 Chat",
+      "description": "Deprecated GPT-5 model used in ChatGPT.",
+      "status": "deprecated",
+      "category": "chatgpt"
+    },
+    {
+      "id": "gpt-5.2",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.2",
+      "description": "Previous frontier model for professional work.",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "status": "current"
+    },
+    {
+      "id": "gpt-5.2-pro",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.2 pro",
+      "description": "Previous higher-compute pro model.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-5.1",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.1",
+      "description": "Previous GPT-5 family model.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-5",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5",
+      "description": "Previous intelligent reasoning model.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-5-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5 mini",
+      "description": "Cost-sensitive GPT-5 variant.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-5-nano",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5 nano",
+      "description": "Fast, low-cost GPT-5 variant.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-5-pro",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5 pro",
+      "description": "Higher-compute GPT-5 variant.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-image-2",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT Image 2",
+      "description": "State-of-the-art image generation and editing model.",
+      "status": "current",
+      "category": "image",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "image"
+        ]
+      }
+    },
+    {
+      "id": "gpt-image-1.5",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT Image 1.5",
+      "description": "Previous image generation model.",
+      "status": "current",
+      "category": "image",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "image"
+        ]
+      }
+    },
+    {
+      "id": "chatgpt-image-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "chatgpt-image-latest",
+      "description": "Previous image model used in ChatGPT.",
+      "status": "current",
+      "category": "image"
+    },
+    {
+      "id": "gpt-image-1",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT Image 1",
+      "description": "Deprecated previous image generation model.",
+      "status": "deprecated",
+      "category": "image"
+    },
+    {
+      "id": "gpt-image-1-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-image-1-mini",
+      "description": "Cost-efficient version of GPT Image 1.",
+      "status": "current",
+      "category": "image"
+    },
+    {
+      "id": "dall-e-3",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "DALL-E 3",
+      "description": "Deprecated previous-generation image generation model.",
+      "status": "deprecated",
+      "category": "image"
+    },
+    {
+      "id": "dall-e-2",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "DALL-E 2",
+      "description": "Deprecated first-generation image generation model.",
+      "status": "deprecated",
+      "category": "image"
+    },
+    {
+      "id": "sora-2",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "Sora 2",
+      "description": "Deprecated video generation model with synced audio.",
+      "status": "deprecated",
+      "category": "video"
+    },
+    {
+      "id": "sora-2-pro",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "Sora 2 Pro",
+      "description": "Deprecated advanced synced-audio video generation model.",
+      "status": "deprecated",
+      "category": "video"
+    },
+    {
+      "id": "gpt-realtime-1.5",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-realtime-1.5",
+      "description": "Realtime audio-in/audio-out model.",
+      "context_length": 32000,
+      "max_completion_tokens": 4096,
+      "status": "current",
+      "category": "realtime"
+    },
+    {
+      "id": "gpt-realtime",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-realtime",
+      "description": "Realtime model for text and audio inputs and outputs.",
+      "status": "current",
+      "category": "realtime"
+    },
+    {
+      "id": "gpt-realtime-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-realtime-mini",
+      "description": "Cost-efficient realtime model.",
+      "context_length": 32000,
+      "max_completion_tokens": 4096,
+      "status": "current",
+      "category": "realtime"
+    },
+    {
+      "id": "gpt-4o-realtime-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o Realtime",
+      "description": "Realtime model for text and audio inputs and outputs.",
+      "status": "current",
+      "category": "realtime"
+    },
+    {
+      "id": "gpt-4o-mini-realtime-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o mini Realtime",
+      "description": "Deprecated smaller realtime model for text and audio inputs and outputs.",
+      "status": "deprecated",
+      "category": "realtime"
+    },
+    {
+      "id": "gpt-audio-1.5",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-audio-1.5",
+      "description": "Audio input/output model for Chat Completions.",
+      "context_length": 128000,
+      "max_completion_tokens": 16384,
+      "status": "current",
+      "category": "audio"
+    },
+    {
+      "id": "gpt-audio",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-audio",
+      "description": "Audio input/output model for Chat Completions.",
+      "status": "current",
+      "category": "audio"
+    },
+    {
+      "id": "gpt-audio-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-audio-mini",
+      "description": "Cost-efficient audio input/output model.",
+      "context_length": 128000,
+      "max_completion_tokens": 16384,
+      "status": "current",
+      "category": "audio"
+    },
+    {
+      "id": "gpt-4o-audio-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o Audio",
+      "description": "Deprecated GPT-4o audio input/output model.",
+      "status": "deprecated",
+      "category": "audio"
+    },
+    {
+      "id": "gpt-4o-mini-audio-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o mini Audio",
+      "description": "Deprecated smaller audio input/output model.",
+      "status": "deprecated",
+      "category": "audio"
+    },
+    {
+      "id": "gpt-4o-transcribe",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o Transcribe",
+      "description": "Speech-to-text model powered by GPT-4o.",
+      "context_length": 16000,
+      "max_completion_tokens": 2000,
+      "status": "current",
+      "category": "transcription"
+    },
+    {
+      "id": "gpt-4o-mini-transcribe",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o mini Transcribe",
+      "description": "Lower-cost speech-to-text model.",
+      "context_length": 16000,
+      "max_completion_tokens": 2000,
+      "status": "current",
+      "category": "transcription"
+    },
+    {
+      "id": "gpt-4o-transcribe-diarize",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o Transcribe Diarize",
+      "description": "Speech-to-text model that identifies who is speaking when.",
+      "status": "current",
+      "category": "transcription"
+    },
+    {
+      "id": "gpt-4o-mini-tts",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o mini TTS",
+      "description": "Text-to-speech model powered by GPT-4o mini.",
+      "status": "current",
+      "category": "speech"
+    },
+    {
+      "id": "tts-1",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "TTS-1",
+      "description": "Text-to-speech model optimized for speed.",
+      "status": "current",
+      "category": "speech"
+    },
+    {
+      "id": "tts-1-hd",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "TTS-1 HD",
+      "description": "Text-to-speech model optimized for quality.",
+      "status": "current",
+      "category": "speech"
+    },
+    {
+      "id": "whisper-1",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "Whisper",
+      "description": "General-purpose speech recognition model.",
+      "status": "current",
+      "category": "transcription"
+    },
+    {
+      "id": "gpt-oss-120b",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-oss-120b",
+      "description": "Open-weight reasoning model.",
+      "status": "current",
+      "category": "open_weight"
+    },
+    {
+      "id": "gpt-oss-20b",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-oss-20b",
+      "description": "Smaller open-weight reasoning model.",
+      "status": "current",
+      "category": "open_weight"
+    },
+    {
+      "id": "o3",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o3",
+      "description": "Reasoning model for complex tasks, succeeded by GPT-5.",
+      "status": "current"
+    },
+    {
+      "id": "o3-deep-research",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o3-deep-research",
+      "description": "Deprecated deep research model.",
+      "status": "deprecated",
+      "category": "deep_research"
+    },
+    {
+      "id": "o3-pro",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o3-pro",
+      "description": "Higher-compute o3 variant.",
+      "status": "current"
+    },
+    {
+      "id": "o3-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o3-mini",
+      "description": "Deprecated small reasoning model alternative to o3.",
+      "status": "deprecated"
+    },
+    {
+      "id": "o4-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o4-mini",
+      "description": "Fast reasoning model, succeeded by GPT-5 mini.",
+      "status": "deprecated"
+    },
+    {
+      "id": "o4-mini-deep-research",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o4-mini-deep-research",
+      "description": "Deprecated faster, more affordable deep research model.",
+      "status": "deprecated",
+      "category": "deep_research"
+    },
+    {
+      "id": "o1",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o1",
+      "description": "Deprecated previous full o-series reasoning model.",
+      "status": "deprecated"
+    },
+    {
+      "id": "o1-pro",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o1-pro",
+      "description": "Deprecated higher-compute o1 variant.",
+      "status": "deprecated"
+    },
+    {
+      "id": "o1-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o1-mini",
+      "description": "Deprecated small model alternative to o1.",
+      "status": "deprecated"
+    },
+    {
+      "id": "o1-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "o1 Preview",
+      "description": "Deprecated preview of OpenAI's first o-series reasoning model.",
+      "status": "deprecated"
+    },
+    {
+      "id": "computer-use-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "computer-use-preview",
+      "description": "Deprecated specialized model for the computer use tool.",
+      "status": "deprecated",
+      "category": "computer_use"
+    },
+    {
+      "id": "gpt-5-search-api",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "gpt-5-search-api",
+      "description": "Search-specialized GPT-5 API model listed in official pricing.",
+      "status": "current",
+      "category": "search"
+    },
+    {
+      "id": "gpt-4o-search-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o Search Preview",
+      "description": "Deprecated GPT model for web search in Chat Completions.",
+      "status": "deprecated",
+      "category": "search"
+    },
+    {
+      "id": "gpt-4o-mini-search-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o mini Search Preview",
+      "description": "Deprecated fast, affordable small model for web search.",
+      "status": "deprecated",
+      "category": "search"
+    },
+    {
+      "id": "gpt-4.5-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4.5 Preview",
+      "description": "Deprecated large GPT model.",
+      "status": "deprecated"
+    },
+    {
+      "id": "gpt-4.1",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4.1",
+      "description": "GPT-4.1 family model.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-4.1-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4.1 mini",
+      "description": "Smaller GPT-4.1 variant.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-4.1-nano",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4.1 nano",
+      "description": "Fastest GPT-4.1 variant.",
+      "status": "deprecated"
+    },
+    {
+      "id": "gpt-4o",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o",
+      "description": "Fast multimodal GPT model.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-4o-mini",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o mini",
+      "description": "Small GPT-4o model.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-4",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4",
+      "description": "Older high-intelligence GPT model.",
+      "status": "current"
+    },
+    {
+      "id": "gpt-4-turbo",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 Turbo",
+      "description": "Deprecated older high-intelligence GPT model.",
+      "status": "deprecated"
+    },
+    {
+      "id": "gpt-4-turbo-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 Turbo Preview",
+      "description": "Deprecated older fast GPT model.",
+      "status": "deprecated"
+    },
+    {
+      "id": "gpt-4o-2024-05-13",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4o 2024-05-13",
+      "description": "Legacy priced GPT-4o snapshot.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-4-turbo-2024-04-09",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 Turbo 2024-04-09",
+      "description": "Legacy GPT-4 Turbo snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-4-0125-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 0125 Preview",
+      "description": "Legacy GPT-4 preview snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-4-1106-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 1106 Preview",
+      "description": "Legacy GPT-4 preview snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-4-1106-vision-preview",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 1106 Vision Preview",
+      "description": "Legacy GPT-4 vision preview snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-4-0613",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 0613",
+      "description": "Legacy GPT-4 snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-4-0314",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 0314",
+      "description": "Legacy GPT-4 snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-4-32k",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-4 32k",
+      "description": "Legacy GPT-4 32k model listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "chatgpt-4o-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "ChatGPT-4o",
+      "description": "Deprecated GPT-4o model used in ChatGPT.",
+      "status": "deprecated",
+      "category": "chatgpt"
+    },
+    {
+      "id": "gpt-3.5-turbo",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-3.5 Turbo",
+      "description": "Deprecated legacy GPT model for cheaper chat and non-chat tasks.",
+      "status": "deprecated"
+    },
+    {
+      "id": "gpt-3.5-turbo-0125",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-3.5 Turbo 0125",
+      "description": "Legacy GPT-3.5 Turbo snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-3.5-turbo-1106",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-3.5 Turbo 1106",
+      "description": "Legacy GPT-3.5 Turbo snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-3.5-turbo-0613",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-3.5 Turbo 0613",
+      "description": "Legacy GPT-3.5 Turbo snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-3.5-0301",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-3.5 0301",
+      "description": "Legacy GPT-3.5 snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-3.5-turbo-instruct",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-3.5 Turbo Instruct",
+      "description": "Legacy GPT-3.5 instruct model listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "gpt-3.5-turbo-16k-0613",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-3.5 Turbo 16k 0613",
+      "description": "Legacy GPT-3.5 Turbo 16k snapshot listed in official pricing.",
+      "status": "legacy"
+    },
+    {
+      "id": "davinci-002",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "davinci-002",
+      "description": "Deprecated replacement for GPT-3 curie and davinci base models.",
+      "status": "deprecated"
+    },
+    {
+      "id": "babbage-002",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "babbage-002",
+      "description": "Deprecated replacement for GPT-3 ada and babbage base models.",
+      "status": "deprecated"
+    },
+    {
+      "id": "text-embedding-3-large",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "text-embedding-3-large",
+      "description": "Most capable OpenAI embedding model.",
+      "status": "current",
+      "category": "embedding"
+    },
+    {
+      "id": "text-embedding-3-small",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "text-embedding-3-small",
+      "description": "Small OpenAI embedding model.",
+      "status": "current",
+      "category": "embedding"
+    },
+    {
+      "id": "text-embedding-ada-002",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "text-embedding-ada-002",
+      "description": "Older embedding model.",
+      "status": "current",
+      "category": "embedding"
+    },
+    {
+      "id": "omni-moderation-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "omni-moderation-latest",
+      "description": "OpenAI moderation model.",
+      "status": "current",
+      "category": "moderation"
+    },
+    {
+      "id": "text-moderation-latest",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "text-moderation-latest",
+      "description": "Deprecated previous-generation text-only moderation model.",
+      "status": "deprecated",
+      "category": "moderation"
+    },
+    {
+      "id": "text-moderation-stable",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "text-moderation-stable",
+      "description": "Deprecated previous-generation text-only moderation model.",
+      "status": "deprecated",
+      "category": "moderation"
+    }
+  ],
+  "claude": [
+    {
+      "id": "claude-opus-4-7",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Opus 4.7",
+      "description": "Most capable generally available Claude model.",
+      "context_length": 1000000,
+      "max_completion_tokens": 128000,
+      "status": "current",
+      "thinking": {
+        "adaptive": true
+      }
+    },
+    {
+      "id": "claude-sonnet-4-6",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Sonnet 4.6",
+      "description": "Best Claude combination of speed and intelligence.",
+      "context_length": 1000000,
+      "max_completion_tokens": 64000,
+      "status": "current",
+      "thinking": {
+        "extended": true,
+        "adaptive": true
+      }
+    },
+    {
+      "id": "claude-haiku-4-5-20251001",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Haiku 4.5",
+      "description": "Fast Claude model with near-frontier intelligence.",
+      "context_length": 200000,
+      "max_completion_tokens": 64000,
+      "status": "current",
+      "aliases": [
+        "claude-haiku-4-5"
+      ],
+      "thinking": {
+        "extended": true
+      }
+    },
+    {
+      "id": "claude-opus-4-6",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Opus 4.6",
+      "context_length": 1000000,
+      "max_completion_tokens": 128000,
+      "status": "legacy",
+      "thinking": {
+        "extended": true
+      }
+    },
+    {
+      "id": "claude-opus-4-5-20251101",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Opus 4.5",
+      "context_length": 200000,
+      "max_completion_tokens": 64000,
+      "status": "legacy",
+      "aliases": [
+        "claude-opus-4-5"
+      ],
+      "thinking": {
+        "extended": true
+      }
+    },
+    {
+      "id": "claude-sonnet-4-5-20250929",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Sonnet 4.5",
+      "context_length": 200000,
+      "max_completion_tokens": 64000,
+      "status": "legacy",
+      "aliases": [
+        "claude-sonnet-4-5"
+      ],
+      "thinking": {
+        "extended": true
+      }
+    },
+    {
+      "id": "claude-opus-4-1-20250805",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Opus 4.1",
+      "context_length": 200000,
+      "max_completion_tokens": 32000,
+      "status": "legacy",
+      "aliases": [
+        "claude-opus-4-1"
+      ],
+      "thinking": {
+        "extended": true
+      }
+    },
+    {
+      "id": "claude-sonnet-4-20250514",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Sonnet 4",
+      "context_length": 200000,
+      "max_completion_tokens": 64000,
+      "status": "deprecated",
+      "retirement_date": "2026-06-15",
+      "aliases": [
+        "claude-sonnet-4-0"
+      ],
+      "thinking": {
+        "extended": true
+      }
+    },
+    {
+      "id": "claude-opus-4-20250514",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Opus 4",
+      "context_length": 200000,
+      "max_completion_tokens": 32000,
+      "status": "deprecated",
+      "retirement_date": "2026-06-15",
+      "aliases": [
+        "claude-opus-4-0"
+      ],
+      "thinking": {
+        "extended": true
+      }
+    },
+    {
+      "id": "claude-3-7-sonnet-20250219",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Sonnet 3.7",
+      "context_length": 200000,
+      "max_completion_tokens": 8192,
+      "status": "deprecated",
+      "thinking": {
+        "extended": true
+      }
+    },
+    {
+      "id": "claude-3-5-haiku-20241022",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Haiku 3.5",
+      "context_length": 200000,
+      "max_completion_tokens": 8192,
+      "status": "deprecated"
+    },
+    {
+      "id": "claude-3-haiku",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "claude",
+      "display_name": "Claude Haiku 3",
+      "context_length": 200000,
+      "status": "legacy"
+    }
+  ],
+  "gemini": [
+    {
+      "id": "gemini-3.1-pro-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3.1 Pro Preview",
+      "name": "models/gemini-3.1-pro-preview",
+      "description": "Advanced multimodal reasoning and agentic coding model.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "gemini-3.1-pro-preview-customtools",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3.1 Pro Preview Custom Tools",
+      "name": "models/gemini-3.1-pro-preview-customtools",
+      "description": "Gemini 3.1 Pro endpoint optimized for custom tools and bash.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent"
+      ],
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "gemini-3-flash-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3 Flash Preview",
+      "name": "models/gemini-3-flash-preview",
+      "description": "Fast Gemini 3 model with strong search and grounding.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "gemini-3-pro-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3 Pro Preview",
+      "name": "models/gemini-3-pro-preview",
+      "description": "Gemini 3 Pro preview endpoint listed in the official Gemini API models page.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent"
+      ],
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "gemini-3.1-flash-lite-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3.1 Flash-Lite Preview",
+      "name": "models/gemini-3.1-flash-lite-preview",
+      "description": "Cost-efficient Gemini 3.1 model for high-volume tasks.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "gemini-3.1-flash-image-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3.1 Flash Image Preview",
+      "name": "models/gemini-3.1-flash-image-preview",
+      "description": "Fast Gemini image generation and editing model.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "id": "gemini-3-pro-image-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3 Pro Image Preview",
+      "name": "models/gemini-3-pro-image-preview",
+      "description": "Gemini 3 native image generation model.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "id": "gemini-3.1-flash-live-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3.1 Flash Live Preview",
+      "name": "models/gemini-3.1-flash-live-preview",
+      "description": "Low-latency audio-to-audio Live API model.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "live"
+      ]
+    },
+    {
+      "id": "gemini-3.1-flash-tts-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 3.1 Flash TTS Preview",
+      "name": "models/gemini-3.1-flash-tts-preview",
+      "description": "Gemini 3.1 Flash text-to-speech model.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "id": "gemini-2.5-pro",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Pro",
+      "name": "models/gemini-2.5-pro",
+      "description": "Advanced Gemini 2.5 model for complex tasks.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "status": "stable",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "gemini-2.5-flash",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Flash",
+      "name": "models/gemini-2.5-flash",
+      "description": "Best price-performance Gemini 2.5 model.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "status": "stable",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "gemini-2.5-flash-lite",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Flash-Lite",
+      "name": "models/gemini-2.5-flash-lite",
+      "description": "Fastest and most budget-friendly Gemini 2.5 model.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "status": "stable",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "gemini-2.5-flash-preview-09-2025",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Flash Preview 09-2025",
+      "name": "models/gemini-2.5-flash-preview-09-2025",
+      "description": "Gemini 2.5 Flash preview snapshot listed in the official Gemini API models page.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "id": "gemini-2.5-flash-lite-preview-09-2025",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Flash-Lite Preview 09-2025",
+      "name": "models/gemini-2.5-flash-lite-preview-09-2025",
+      "description": "Gemini 2.5 Flash-Lite preview snapshot listed in the official Gemini API models page.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "id": "gemini-2.5-flash-image",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Flash Image",
+      "name": "models/gemini-2.5-flash-image",
+      "description": "Gemini 2.5 native image generation and editing model.",
+      "status": "stable",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "id": "gemini-2.5-flash-native-audio-preview-12-2025",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Flash Native Audio Preview",
+      "name": "models/gemini-2.5-flash-native-audio-preview-12-2025",
+      "description": "Live API native audio model.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "live"
+      ]
+    },
+    {
+      "id": "gemini-2.5-flash-preview-tts",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Flash Preview TTS",
+      "name": "models/gemini-2.5-flash-preview-tts",
+      "description": "Gemini 2.5 Flash text-to-speech model.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "id": "gemini-2.5-pro-preview-tts",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Pro Preview TTS",
+      "name": "models/gemini-2.5-pro-preview-tts",
+      "description": "Gemini 2.5 Pro text-to-speech model.",
+      "status": "preview",
+      "supportedGenerationMethods": [
+        "generateContent",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "id": "gemini-embedding-2",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini Embedding 2",
+      "name": "models/gemini-embedding-2",
+      "description": "Multimodal embedding model.",
+      "status": "current",
+      "category": "embedding"
+    },
+    {
+      "id": "gemini-embedding-001",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini Embedding",
+      "name": "models/gemini-embedding-001",
+      "description": "Text embedding model.",
+      "status": "current",
+      "category": "embedding"
+    },
+    {
+      "id": "gemini-2.5-computer-use-preview-10-2025",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.5 Computer Use Preview",
+      "name": "models/gemini-2.5-computer-use-preview-10-2025",
+      "description": "Browser-control agent model.",
+      "status": "preview",
+      "category": "computer_use"
+    },
+    {
+      "id": "gemini-robotics-er-1.6-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini Robotics-ER 1.6 Preview",
+      "name": "models/gemini-robotics-er-1.6-preview",
+      "description": "Embodied reasoning model for robotics.",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-robotics-er-1.5-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini Robotics-ER 1.5 Preview",
+      "name": "models/gemini-robotics-er-1.5-preview",
+      "description": "Embodied reasoning model for robotics.",
+      "status": "preview"
+    },
+    {
+      "id": "deep-research-pro-preview-12-2025",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Deep Research Pro Preview",
+      "name": "models/deep-research-pro-preview-12-2025",
+      "description": "Google Deep Research model listed in the official Gemini API models page.",
+      "status": "preview",
+      "category": "deep_research"
+    },
+    {
+      "id": "deep-research-preview-04-2026",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Deep Research Preview",
+      "name": "models/deep-research-preview-04-2026",
+      "description": "Google Deep Research model listed in the official Gemini API models page.",
+      "status": "preview",
+      "category": "deep_research"
+    },
+    {
+      "id": "deep-research-max-preview-04-2026",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Deep Research Max Preview",
+      "name": "models/deep-research-max-preview-04-2026",
+      "description": "Google Deep Research Max model listed in the official Gemini API models page.",
+      "status": "preview",
+      "category": "deep_research"
+    },
+    {
+      "id": "imagen",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Imagen",
+      "description": "Google image generation model entry listed in the official Gemini API models page.",
+      "status": "current",
+      "category": "image"
+    },
+    {
+      "id": "imagen-4",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Imagen 4",
+      "description": "Google image generation model family listed in Gemini API pricing.",
+      "status": "current",
+      "category": "image"
+    },
+    {
+      "id": "veo-3.1-generate-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Veo 3.1 Generate Preview",
+      "description": "Google video generation model listed in the official Gemini API models page.",
+      "status": "preview",
+      "category": "video"
+    },
+    {
+      "id": "veo-3.1-lite-generate-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Veo 3.1 Lite Generate Preview",
+      "description": "Google video generation model listed in the official Gemini API models page.",
+      "status": "preview",
+      "category": "video"
+    },
+    {
+      "id": "veo-2.0-generate-001",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Veo 2.0 Generate 001",
+      "description": "Google video generation model listed in the official Gemini API models page.",
+      "status": "current",
+      "category": "video"
+    },
+    {
+      "id": "veo-3.1",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Veo 3.1",
+      "description": "Google video generation model family listed in Gemini API pricing.",
+      "status": "current",
+      "category": "video"
+    },
+    {
+      "id": "veo-3",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Veo 3",
+      "description": "Google video generation model family listed in Gemini API pricing.",
+      "status": "current",
+      "category": "video"
+    },
+    {
+      "id": "veo-2",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Veo 2",
+      "description": "Google video generation model family listed in Gemini API pricing.",
+      "status": "current",
+      "category": "video"
+    },
+    {
+      "id": "lyria-3",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Lyria 3",
+      "description": "Google music generation model listed in Gemini API pricing.",
+      "status": "preview",
+      "category": "music"
+    },
+    {
+      "id": "lyria-realtime-exp",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Lyria Realtime Experimental",
+      "description": "Google music generation model listed in the official Gemini API models page.",
+      "status": "experimental",
+      "category": "music"
+    },
+    {
+      "id": "lyria-3-clip-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Lyria 3 Clip Preview",
+      "description": "Google music generation model listed in the official Gemini API models page.",
+      "status": "preview",
+      "category": "music"
+    },
+    {
+      "id": "lyria-3-pro-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Lyria 3 Pro Preview",
+      "description": "Google music generation model listed in the official Gemini API models page.",
+      "status": "preview",
+      "category": "music"
+    },
+    {
+      "id": "gemini-2.0-flash",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.0 Flash",
+      "name": "models/gemini-2.0-flash",
+      "description": "Deprecated Gemini 2.0 model.",
+      "status": "deprecated",
+      "shutdown_date": "2026-06-01"
+    },
+    {
+      "id": "gemini-2.0-flash-lite",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini",
+      "display_name": "Gemini 2.0 Flash-Lite",
+      "name": "models/gemini-2.0-flash-lite",
+      "description": "Deprecated Gemini 2.0 Flash-Lite model.",
+      "status": "deprecated",
+      "shutdown_date": "2026-06-01"
+    }
+  ],
+  "vertex": [
+    {
+      "id": "gemini-3.1-pro-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Gemini 3.1 Pro Preview",
+      "name": "publishers/google/models/gemini-3.1-pro-preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-3-flash-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Gemini 3 Flash Preview",
+      "name": "publishers/google/models/gemini-3-flash-preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-3.1-flash-lite-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Gemini 3.1 Flash-Lite Preview",
+      "name": "publishers/google/models/gemini-3.1-flash-lite-preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-2.5-pro",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Gemini 2.5 Pro",
+      "name": "publishers/google/models/gemini-2.5-pro",
+      "status": "stable"
+    },
+    {
+      "id": "gemini-2.5-flash",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Gemini 2.5 Flash",
+      "name": "publishers/google/models/gemini-2.5-flash",
+      "status": "stable"
+    },
+    {
+      "id": "gemini-2.5-flash-lite",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Gemini 2.5 Flash-Lite",
+      "name": "publishers/google/models/gemini-2.5-flash-lite",
+      "status": "stable"
+    },
+    {
+      "id": "imagen-4.0-generate-001",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Imagen 4",
+      "name": "publishers/google/models/imagen-4.0-generate-001",
+      "status": "current",
+      "category": "image"
+    },
+    {
+      "id": "imagen-4.0-fast-generate-001",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Imagen 4 Fast",
+      "name": "publishers/google/models/imagen-4.0-fast-generate-001",
+      "status": "current",
+      "category": "image"
+    },
+    {
+      "id": "imagen-4.0-ultra-generate-001",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Imagen 4 Ultra",
+      "name": "publishers/google/models/imagen-4.0-ultra-generate-001",
+      "status": "current",
+      "category": "image"
+    },
+    {
+      "id": "veo-3.1-generate-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Veo 3.1",
+      "status": "preview",
+      "category": "video"
+    },
+    {
+      "id": "veo-3.1-fast-generate-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Veo 3.1 Fast",
+      "status": "preview",
+      "category": "video"
+    },
+    {
+      "id": "veo-3.1-lite-generate-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "vertex",
+      "display_name": "Veo 3.1 Lite",
+      "status": "preview",
+      "category": "video"
+    }
+  ],
+  "gemini-cli": [
+    {
+      "id": "gemini-3.1-pro-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini-cli",
+      "display_name": "Gemini 3.1 Pro Preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-3-flash-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini-cli",
+      "display_name": "Gemini 3 Flash Preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-3.1-flash-lite-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini-cli",
+      "display_name": "Gemini 3.1 Flash-Lite Preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-2.5-pro",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini-cli",
+      "display_name": "Gemini 2.5 Pro",
+      "status": "stable"
+    },
+    {
+      "id": "gemini-2.5-flash",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini-cli",
+      "display_name": "Gemini 2.5 Flash",
+      "status": "stable"
+    },
+    {
+      "id": "gemini-2.5-flash-lite",
+      "object": "model",
+      "owned_by": "google",
+      "type": "gemini-cli",
+      "display_name": "Gemini 2.5 Flash-Lite",
+      "status": "stable"
+    }
+  ],
+  "aistudio": [
+    {
+      "id": "gemini-3.1-pro-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini 3.1 Pro Preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-3-flash-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini 3 Flash Preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-3.1-flash-lite-preview",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini 3.1 Flash-Lite Preview",
+      "status": "preview"
+    },
+    {
+      "id": "gemini-2.5-pro",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini 2.5 Pro",
+      "status": "stable"
+    },
+    {
+      "id": "gemini-2.5-flash",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini 2.5 Flash",
+      "status": "stable"
+    },
+    {
+      "id": "gemini-2.5-flash-lite",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini 2.5 Flash-Lite",
+      "status": "stable"
+    },
+    {
+      "id": "gemini-pro-latest",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini Pro Latest",
+      "status": "alias"
+    },
+    {
+      "id": "gemini-flash-latest",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini Flash Latest",
+      "status": "alias"
+    },
+    {
+      "id": "gemini-flash-lite-latest",
+      "object": "model",
+      "owned_by": "google",
+      "type": "aistudio",
+      "display_name": "Gemini Flash-Lite Latest",
+      "status": "alias"
+    }
+  ],
+  "codex-free": [
+    {
+      "id": "gpt-5.3-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.3-Codex",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "status": "current"
+    }
+  ],
+  "codex-team": [
+    {
+      "id": "gpt-5.3-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.3-Codex",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "status": "current"
+    }
+  ],
+  "codex-plus": [
+    {
+      "id": "gpt-5.3-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.3-Codex",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "status": "current"
+    },
+    {
+      "id": "gpt-5.2-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.2-Codex",
+      "status": "deprecated"
+    }
+  ],
+  "codex-pro": [
+    {
+      "id": "gpt-5.3-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.3-Codex",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "status": "current"
+    },
+    {
+      "id": "gpt-5.2-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5.2-Codex",
+      "status": "deprecated"
+    },
+    {
+      "id": "gpt-5-codex",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "openai",
+      "display_name": "GPT-5-Codex",
+      "status": "deprecated"
+    }
+  ],
+  "kimi": [
+    {
+      "id": "kimi-k2.6",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Kimi K2.6",
+      "description": "Latest multimodal Kimi model with text, image, and video input.",
+      "context_length": 262144,
+      "status": "current",
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "kimi-k2.5",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Kimi K2.5",
+      "description": "Multimodal Kimi model with text, image, and video input.",
+      "context_length": 262144,
+      "status": "current",
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "kimi-k2-0905-preview",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Kimi K2 0905 Preview",
+      "context_length": 262144,
+      "status": "deprecated",
+      "retirement_date": "2026-05-25"
+    },
+    {
+      "id": "kimi-k2-0711-preview",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Kimi K2 0711 Preview",
+      "context_length": 131072,
+      "status": "deprecated",
+      "retirement_date": "2026-05-25"
+    },
+    {
+      "id": "kimi-k2-turbo-preview",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Kimi K2 Turbo Preview",
+      "context_length": 262144,
+      "status": "deprecated",
+      "retirement_date": "2026-05-25"
+    },
+    {
+      "id": "kimi-k2-thinking",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Kimi K2 Thinking",
+      "context_length": 262144,
+      "status": "deprecated",
+      "retirement_date": "2026-05-25",
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "kimi-k2-thinking-turbo",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Kimi K2 Thinking Turbo",
+      "context_length": 262144,
+      "status": "deprecated",
+      "retirement_date": "2026-05-25",
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "moonshot-v1-8k",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Moonshot V1 8K",
+      "context_length": 8192,
+      "status": "current"
+    },
+    {
+      "id": "moonshot-v1-32k",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Moonshot V1 32K",
+      "context_length": 32768,
+      "status": "current"
+    },
+    {
+      "id": "moonshot-v1-128k",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Moonshot V1 128K",
+      "context_length": 131072,
+      "status": "current"
+    },
+    {
+      "id": "moonshot-v1-8k-vision-preview",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Moonshot V1 8K Vision Preview",
+      "context_length": 8192,
+      "status": "preview"
+    },
+    {
+      "id": "moonshot-v1-32k-vision-preview",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Moonshot V1 32K Vision Preview",
+      "context_length": 32768,
+      "status": "preview"
+    },
+    {
+      "id": "moonshot-v1-128k-vision-preview",
+      "object": "model",
+      "owned_by": "moonshot",
+      "type": "kimi",
+      "display_name": "Moonshot V1 128K Vision Preview",
+      "context_length": 131072,
+      "status": "preview"
+    }
+  ],
+  "antigravity": [
+    {
+      "id": "gemini-3.1-pro",
+      "object": "model",
+      "owned_by": "google",
+      "type": "antigravity",
+      "display_name": "Gemini 3.1 Pro",
+      "status": "current"
+    },
+    {
+      "id": "gemini-3-flash",
+      "object": "model",
+      "owned_by": "google",
+      "type": "antigravity",
+      "display_name": "Gemini 3 Flash",
+      "status": "current"
+    },
+    {
+      "id": "claude-sonnet-4-6",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "antigravity",
+      "display_name": "Claude Sonnet 4.6",
+      "status": "current"
+    },
+    {
+      "id": "claude-opus-4-6",
+      "object": "model",
+      "owned_by": "anthropic",
+      "type": "antigravity",
+      "display_name": "Claude Opus 4.6",
+      "status": "current"
+    },
+    {
+      "id": "gpt-oss-120b",
+      "object": "model",
+      "owned_by": "openai",
+      "type": "antigravity",
+      "display_name": "gpt-oss-120b",
+      "status": "current"
+    }
+  ],
+  "xai": [
+    {
+      "id": "grok-4.3",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "Grok 4.3",
+      "description": "xAI recommended general-purpose Grok model for current language-model use cases.",
+      "context_length": 1000000,
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "configurable": true
+      },
+      "aliases": [
+        "grok-4.3-latest",
+        "grok-latest"
+      ],
+      "features": [
+        "function_calling",
+        "structured_outputs",
+        "reasoning"
+      ],
+      "long_context_threshold": 200000
+    },
+    {
+      "id": "grok-4-1-fast-reasoning",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "grok-4-1-fast-reasoning",
+      "description": "Scheduled by xAI for retirement on May 15, 2026 at 12:00pm PT.",
+      "status": "deprecated",
+      "retirement_date": "2026-05-15T12:00:00 America/Los_Angeles"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "grok-4-1-fast-non-reasoning",
+      "description": "Scheduled by xAI for retirement on May 15, 2026 at 12:00pm PT.",
+      "status": "deprecated",
+      "retirement_date": "2026-05-15T12:00:00 America/Los_Angeles"
+    },
+    {
+      "id": "grok-4-fast-reasoning",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "grok-4-fast-reasoning",
+      "description": "Scheduled by xAI for retirement on May 15, 2026 at 12:00pm PT.",
+      "status": "deprecated",
+      "retirement_date": "2026-05-15T12:00:00 America/Los_Angeles"
+    },
+    {
+      "id": "grok-4-fast-non-reasoning",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "grok-4-fast-non-reasoning",
+      "description": "Scheduled by xAI for retirement on May 15, 2026 at 12:00pm PT.",
+      "status": "deprecated",
+      "retirement_date": "2026-05-15T12:00:00 America/Los_Angeles"
+    },
+    {
+      "id": "grok-4-0709",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "grok-4-0709",
+      "description": "Scheduled by xAI for retirement on May 15, 2026 at 12:00pm PT.",
+      "status": "deprecated",
+      "retirement_date": "2026-05-15T12:00:00 America/Los_Angeles"
+    },
+    {
+      "id": "grok-code-fast-1",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "grok-code-fast-1",
+      "description": "Scheduled by xAI for retirement on May 15, 2026 at 12:00pm PT.",
+      "status": "deprecated",
+      "retirement_date": "2026-05-15T12:00:00 America/Los_Angeles"
+    },
+    {
+      "id": "grok-3",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "grok-3",
+      "description": "Scheduled by xAI for retirement on May 15, 2026 at 12:00pm PT.",
+      "status": "deprecated",
+      "retirement_date": "2026-05-15T12:00:00 America/Los_Angeles"
+    },
+    {
+      "id": "grok-imagine-image-pro",
+      "object": "model",
+      "owned_by": "xai",
+      "type": "xai",
+      "display_name": "grok-imagine-image-pro",
+      "description": "Scheduled by xAI for retirement on May 15, 2026 at 12:00pm PT.",
+      "status": "deprecated",
+      "retirement_date": "2026-05-15T12:00:00 America/Los_Angeles"
+    }
+  ],
+  "deepseek": [
+    {
+      "id": "deepseek-v4-flash",
+      "object": "model",
+      "owned_by": "deepseek",
+      "type": "deepseek",
+      "display_name": "DeepSeek V4 Flash",
+      "description": "DeepSeek V4 Flash with thinking and non-thinking modes.",
+      "context_length": 1000000,
+      "max_completion_tokens": 384000,
+      "status": "current",
+      "thinking": {
+        "supported": true,
+        "default": true
+      },
+      "features": [
+        "json_output",
+        "tool_calls",
+        "chat_prefix_completion",
+        "fim_non_thinking_only"
+      ]
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "object": "model",
+      "owned_by": "deepseek",
+      "type": "deepseek",
+      "display_name": "DeepSeek V4 Pro",
+      "description": "DeepSeek V4 Pro with thinking and non-thinking modes.",
+      "context_length": 1000000,
+      "max_completion_tokens": 384000,
+      "status": "current",
+      "thinking": {
+        "supported": true,
+        "default": true
+      },
+      "features": [
+        "json_output",
+        "tool_calls",
+        "chat_prefix_completion",
+        "fim_non_thinking_only"
+      ]
+    },
+    {
+      "id": "deepseek-chat",
+      "object": "model",
+      "owned_by": "deepseek",
+      "type": "deepseek",
+      "display_name": "DeepSeek Chat",
+      "description": "Compatibility alias for non-thinking mode of deepseek-v4-flash; official docs say it will be deprecated in the future.",
+      "status": "alias",
+      "alias_for": "deepseek-v4-flash",
+      "mode": "non_thinking"
+    },
+    {
+      "id": "deepseek-reasoner",
+      "object": "model",
+      "owned_by": "deepseek",
+      "type": "deepseek",
+      "display_name": "DeepSeek Reasoner",
+      "description": "Compatibility alias for thinking mode of deepseek-v4-flash; official docs say it will be deprecated in the future.",
+      "status": "alias",
+      "alias_for": "deepseek-v4-flash",
+      "mode": "thinking"
+    }
+  ],
+  "mistral": [
+    {
+      "id": "mistral-large-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Mistral Large 3",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "mistral-medium-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Mistral Medium 3.5",
+      "status": "current"
+    },
+    {
+      "id": "mistral-small-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Mistral Small 4",
+      "status": "current"
+    },
+    {
+      "id": "magistral-medium-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Magistral Medium",
+      "status": "current",
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "magistral-small-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Magistral Small",
+      "status": "current",
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "devstral-medium-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Devstral 2",
+      "status": "current"
+    },
+    {
+      "id": "devstral-small-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Devstral Small 2",
+      "status": "current"
+    },
+    {
+      "id": "codestral-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Codestral",
+      "status": "current"
+    },
+    {
+      "id": "labs-leanstral-2603",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Leanstral",
+      "status": "experimental"
+    },
+    {
+      "id": "ministral-3b-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Ministral 3B",
+      "status": "current"
+    },
+    {
+      "id": "ministral-8b-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Ministral 8B",
+      "status": "current"
+    },
+    {
+      "id": "ministral-14b-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Ministral 14B",
+      "status": "current"
+    },
+    {
+      "id": "mistral-ocr-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Mistral OCR 3",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "document",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "voxtral-mini-tts-2603",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Voxtral TTS",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "audio"
+        ]
+      }
+    },
+    {
+      "id": "voxtral-mini-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Voxtral Mini",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "audio",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "voxtral-small-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Voxtral Small",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "audio",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "mistral-moderation-2603",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "moderation",
+      "display_name": "Mistral Moderation",
+      "status": "current"
+    },
+    {
+      "id": "codestral-embed-2505",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "embedding",
+      "display_name": "Codestral Embed",
+      "status": "current"
+    },
+    {
+      "id": "mistral-embed",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "embedding",
+      "display_name": "Mistral Embed",
+      "status": "current"
+    },
+    {
+      "id": "pixtral-large-latest",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Pixtral Large",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "pixtral-12b",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Pixtral 12B",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "open-mistral-nemo",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Mistral NeMo",
+      "status": "legacy"
+    },
+    {
+      "id": "open-mistral-7b",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Mistral 7B",
+      "status": "legacy"
+    },
+    {
+      "id": "open-mixtral-8x7b",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Mixtral 8x7B",
+      "status": "legacy"
+    },
+    {
+      "id": "open-mixtral-8x22b",
+      "object": "model",
+      "owned_by": "mistral",
+      "type": "mistral",
+      "display_name": "Mixtral 8x22B",
+      "status": "legacy"
+    }
+  ],
+  "cohere": [
+    {
+      "id": "command-a-03-2025",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command A",
+      "status": "current",
+      "context_length": 256000,
+      "max_completion_tokens": 8000,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "command-r7b-12-2024",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command R7B",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "command-a-translate-08-2025",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command A Translate",
+      "status": "current",
+      "context_length": 8000,
+      "max_completion_tokens": 8000
+    },
+    {
+      "id": "command-a-reasoning-08-2025",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command A Reasoning",
+      "status": "current",
+      "context_length": 256000,
+      "max_completion_tokens": 32000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "command-a-vision-07-2025",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command A Vision",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 8000,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "command-r-08-2024",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command R 08-2024",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "command-r-plus-08-2024",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command R+ 08-2024",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "embed-v4.0",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "embedding",
+      "display_name": "Embed v4.0",
+      "status": "current",
+      "context_length": 128000,
+      "dimensions": [
+        256,
+        512,
+        1024,
+        1536
+      ],
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "document"
+        ],
+        "output": [
+          "embedding"
+        ]
+      }
+    },
+    {
+      "id": "embed-english-v3.0",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "embedding",
+      "display_name": "Embed English v3.0",
+      "status": "current",
+      "context_length": 512,
+      "dimensions": [
+        1024
+      ]
+    },
+    {
+      "id": "embed-english-light-v3.0",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "embedding",
+      "display_name": "Embed English Light v3.0",
+      "status": "current",
+      "context_length": 512,
+      "dimensions": [
+        384
+      ]
+    },
+    {
+      "id": "embed-multilingual-v3.0",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "embedding",
+      "display_name": "Embed Multilingual v3.0",
+      "status": "current",
+      "context_length": 512,
+      "dimensions": [
+        1024
+      ]
+    },
+    {
+      "id": "embed-multilingual-light-v3.0",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "embedding",
+      "display_name": "Embed Multilingual Light v3.0",
+      "status": "current",
+      "context_length": 512,
+      "dimensions": [
+        384
+      ]
+    },
+    {
+      "id": "rerank-v4.0-pro",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "rerank",
+      "display_name": "Rerank v4.0 Pro",
+      "status": "current",
+      "context_length": 32000
+    },
+    {
+      "id": "rerank-v4.0-fast",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "rerank",
+      "display_name": "Rerank v4.0 Fast",
+      "status": "current",
+      "context_length": 32000
+    },
+    {
+      "id": "rerank-v3.5",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "rerank",
+      "display_name": "Rerank v3.5",
+      "status": "current",
+      "context_length": 4000
+    },
+    {
+      "id": "rerank-english-v3.0",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "rerank",
+      "display_name": "Rerank English v3.0",
+      "status": "current",
+      "context_length": 4000
+    },
+    {
+      "id": "rerank-multilingual-v3.0",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "rerank",
+      "display_name": "Rerank Multilingual v3.0",
+      "status": "current",
+      "context_length": 4000
+    },
+    {
+      "id": "cohere-transcribe-03-2026",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "audio",
+      "display_name": "Cohere Transcribe 03-2026",
+      "status": "current",
+      "max_file_size_mb": 25
+    },
+    {
+      "id": "tiny-aya-global",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Tiny Aya Global",
+      "status": "current",
+      "context_length": 8000,
+      "max_completion_tokens": 8000
+    },
+    {
+      "id": "tiny-aya-earth",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Tiny Aya Earth",
+      "status": "current",
+      "context_length": 8000,
+      "max_completion_tokens": 8000
+    },
+    {
+      "id": "tiny-aya-fire",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Tiny Aya Fire",
+      "status": "current",
+      "context_length": 8000,
+      "max_completion_tokens": 8000
+    },
+    {
+      "id": "tiny-aya-water",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Tiny Aya Water",
+      "status": "current",
+      "context_length": 8000,
+      "max_completion_tokens": 8000
+    },
+    {
+      "id": "c4ai-aya-expanse-32b",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Aya Expanse 32B",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "c4ai-aya-vision-32b",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Aya Vision 32B",
+      "status": "current",
+      "context_length": 16000,
+      "max_completion_tokens": 4000,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "command-r-03-2024",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command R 03-2024",
+      "status": "deprecated",
+      "deprecation_date": "2025-09-15",
+      "context_length": 128000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "command-r-plus-04-2024",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command R+ 04-2024",
+      "status": "deprecated",
+      "deprecation_date": "2025-09-15",
+      "context_length": 128000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "command",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command",
+      "status": "deprecated",
+      "deprecation_date": "2025-09-15",
+      "context_length": 4000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "command-light",
+      "object": "model",
+      "owned_by": "cohere",
+      "type": "cohere",
+      "display_name": "Command Light",
+      "status": "deprecated",
+      "deprecation_date": "2025-09-15",
+      "context_length": 4000,
+      "max_completion_tokens": 4000
+    }
+  ],
+  "perplexity": [
+    {
+      "id": "sonar",
+      "object": "model",
+      "owned_by": "perplexity",
+      "type": "search_llm",
+      "display_name": "Sonar",
+      "status": "current"
+    },
+    {
+      "id": "sonar-pro",
+      "object": "model",
+      "owned_by": "perplexity",
+      "type": "search_llm",
+      "display_name": "Sonar Pro",
+      "status": "current"
+    },
+    {
+      "id": "sonar-reasoning-pro",
+      "object": "model",
+      "owned_by": "perplexity",
+      "type": "search_llm",
+      "display_name": "Sonar Reasoning Pro",
+      "status": "current",
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "sonar-deep-research",
+      "object": "model",
+      "owned_by": "perplexity",
+      "type": "research_llm",
+      "display_name": "Sonar Deep Research",
+      "status": "current",
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "pplx-embed-v1-0.6b",
+      "object": "model",
+      "owned_by": "perplexity",
+      "type": "embedding",
+      "display_name": "pplx-embed-v1-0.6b",
+      "status": "current",
+      "dimensions": [
+        1024
+      ]
+    },
+    {
+      "id": "pplx-embed-v1-4b",
+      "object": "model",
+      "owned_by": "perplexity",
+      "type": "embedding",
+      "display_name": "pplx-embed-v1-4b",
+      "status": "current",
+      "dimensions": [
+        2560
+      ]
+    },
+    {
+      "id": "pplx-embed-context-v1-0.6b",
+      "object": "model",
+      "owned_by": "perplexity",
+      "type": "embedding",
+      "display_name": "pplx-embed-context-v1-0.6b",
+      "status": "current",
+      "dimensions": [
+        1024
+      ]
+    },
+    {
+      "id": "pplx-embed-context-v1-4b",
+      "object": "model",
+      "owned_by": "perplexity",
+      "type": "embedding",
+      "display_name": "pplx-embed-context-v1-4b",
+      "status": "current",
+      "dimensions": [
+        2560
+      ]
+    }
+  ],
+  "qwen": [
+    {
+      "id": "qwen3.6-max-preview",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "qwen",
+      "display_name": "Qwen3.6 Max Preview",
+      "status": "preview",
+      "context_length": 256000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "qwen3.6-plus",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "qwen",
+      "display_name": "Qwen3.6 Plus",
+      "status": "current",
+      "context_length": 1000000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      },
+      "features": [
+        "function_calling",
+        "built_in_tools",
+        "structured_output"
+      ]
+    },
+    {
+      "id": "qwen3.6-plus-2026-04-02",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "qwen",
+      "display_name": "Qwen3.6 Plus 2026-04-02",
+      "status": "snapshot",
+      "context_length": 1000000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "qwen3.6-flash",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "qwen",
+      "display_name": "Qwen3.6 Flash",
+      "status": "current",
+      "context_length": 1000000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      },
+      "features": [
+        "function_calling",
+        "built_in_tools",
+        "structured_output",
+        "batch"
+      ]
+    },
+    {
+      "id": "qwen3.6-flash-2026-04-16",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "qwen",
+      "display_name": "Qwen3.6 Flash 2026-04-16",
+      "status": "snapshot",
+      "context_length": 1000000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "qwen3.5-plus",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "qwen",
+      "display_name": "Qwen3.5 Plus",
+      "status": "current",
+      "context_length": 1000000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "qwen3.5-flash",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "qwen",
+      "display_name": "Qwen3.5 Flash",
+      "status": "current",
+      "context_length": 1000000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "qwen-long",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "qwen",
+      "display_name": "Qwen Long",
+      "status": "legacy",
+      "context_length": 10000000
+    },
+    {
+      "id": "text-embedding-v4",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "embedding",
+      "display_name": "Text Embedding v4",
+      "status": "current"
+    },
+    {
+      "id": "qwen3-rerank",
+      "object": "model",
+      "owned_by": "alibaba",
+      "type": "rerank",
+      "display_name": "Qwen3 Rerank",
+      "status": "current"
+    }
+  ],
+  "qianfan": [
+    {
+      "id": "ernie-5.0",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE 5.0",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 65536,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "audio",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "ernie-5.0-thinking-preview",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE 5.0 Thinking Preview",
+      "status": "preview",
+      "context_length": 128000,
+      "max_completion_tokens": 65536,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "ernie-5.0-thinking-latest",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE 5.0 Thinking Latest",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 65536,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "ernie-5.0-thinking-exp",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE 5.0 Thinking Exp",
+      "status": "experimental",
+      "context_length": 128000,
+      "max_completion_tokens": 65536,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "ernie-4.5-turbo-128k",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE 4.5 Turbo 128K",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 12288
+    },
+    {
+      "id": "ernie-4.5-turbo-32k",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE 4.5 Turbo 32K",
+      "status": "current",
+      "context_length": 32000,
+      "max_completion_tokens": 12288
+    },
+    {
+      "id": "ernie-4.5-turbo-vl",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE 4.5 Turbo VL",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 16384,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "ernie-x1.1",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE X1.1",
+      "status": "current",
+      "context_length": 64000,
+      "max_completion_tokens": 65536,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "ernie-x1-turbo-32k",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE X1 Turbo 32K",
+      "status": "current",
+      "context_length": 32000,
+      "max_completion_tokens": 28160,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "embedding-v1",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "embedding",
+      "display_name": "Embedding-V1",
+      "status": "current",
+      "dimensions": [
+        384
+      ]
+    },
+    {
+      "id": "bce-reranker-base",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "rerank",
+      "display_name": "BCE Reranker Base",
+      "status": "current"
+    },
+    {
+      "id": "ernie-x1.1-preview",
+      "object": "model",
+      "owned_by": "baidu",
+      "type": "qianfan",
+      "display_name": "ERNIE X1.1 Preview",
+      "status": "preview",
+      "context_length": 64000,
+      "max_completion_tokens": 65536,
+      "thinking": {
+        "supported": true
+      }
+    }
+  ],
+  "hunyuan": [
+    {
+      "id": "hunyuan-2.0-thinking-20251109",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Tencent HY 2.0 Think",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "hunyuan-2.0-instruct-20251111",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Tencent HY 2.0 Instruct",
+      "status": "current",
+      "context_length": 128000,
+      "max_completion_tokens": 16000
+    },
+    {
+      "id": "hunyuan-t1-latest",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan T1 Latest",
+      "status": "current",
+      "context_length": 32000,
+      "max_completion_tokens": 64000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "hunyuan-a13b",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan A13B",
+      "status": "current",
+      "context_length": 224000,
+      "max_completion_tokens": 32000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "hunyuan-turbos-latest",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan TurboS Latest",
+      "status": "current",
+      "context_length": 32000,
+      "max_completion_tokens": 16000
+    },
+    {
+      "id": "hunyuan-lite",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan Lite",
+      "status": "current",
+      "context_length": 250000,
+      "max_completion_tokens": 6000
+    },
+    {
+      "id": "hunyuan-translation",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan Translation",
+      "status": "current",
+      "context_length": 4000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "hunyuan-translation-lite",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan Translation Lite",
+      "status": "current",
+      "context_length": 4000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "hunyuan-large-role-latest",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan Large Role Latest",
+      "status": "current",
+      "context_length": 28000,
+      "max_completion_tokens": 4000
+    },
+    {
+      "id": "hunyuan-vision-1.5-instruct",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Tencent HY Vision 1.5 Instruct",
+      "status": "current",
+      "context_length": 24000,
+      "max_completion_tokens": 16000,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "hunyuan-t1-vision-20250916",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan T1 Vision 20250916",
+      "status": "current",
+      "context_length": 28000,
+      "max_completion_tokens": 20000,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "hunyuan-turbos-vision-video",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "hunyuan",
+      "display_name": "Hunyuan TurboS Vision Video",
+      "status": "current",
+      "context_length": 24000,
+      "max_completion_tokens": 8000,
+      "modalities": {
+        "input": [
+          "text",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "hunyuan-embedding",
+      "object": "model",
+      "owned_by": "tencent",
+      "type": "embedding",
+      "display_name": "Hunyuan Embedding",
+      "status": "current"
+    }
+  ],
+  "zai": [
+    {
+      "id": "glm-5.1",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-5.1",
+      "status": "current",
+      "context_length": 200000,
+      "max_completion_tokens": 128000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "glm-5",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-5",
+      "status": "current",
+      "context_length": 200000,
+      "max_completion_tokens": 128000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "glm-5-turbo",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-5-Turbo",
+      "status": "current",
+      "context_length": 200000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "glm-4.7",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.7",
+      "status": "current",
+      "context_length": 200000
+    },
+    {
+      "id": "glm-4.7-flashx",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.7-FlashX",
+      "status": "current",
+      "context_length": 200000
+    },
+    {
+      "id": "glm-4.6",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.6",
+      "status": "current",
+      "context_length": 200000
+    },
+    {
+      "id": "glm-4.5",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.5",
+      "status": "current",
+      "context_length": 128000
+    },
+    {
+      "id": "glm-4.5-x",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.5-X",
+      "status": "current",
+      "context_length": 128000
+    },
+    {
+      "id": "glm-4.5-air",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.5-Air",
+      "status": "current",
+      "context_length": 128000
+    },
+    {
+      "id": "glm-4.5-airx",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.5-AirX",
+      "status": "current",
+      "context_length": 128000
+    },
+    {
+      "id": "glm-4-32b-0414-128k",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4-32B-0414-128K",
+      "status": "current",
+      "context_length": 128000
+    },
+    {
+      "id": "glm-4.7-flash",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.7-Flash",
+      "status": "current",
+      "context_length": 200000
+    },
+    {
+      "id": "glm-4.5-flash",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.5-Flash",
+      "status": "current",
+      "context_length": 200000
+    },
+    {
+      "id": "glm-5v-turbo",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-5V-Turbo",
+      "status": "current",
+      "context_length": 200000,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "glm-4.6v",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "zai",
+      "display_name": "GLM-4.6V",
+      "status": "current",
+      "context_length": 128000,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "glm-ocr",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "ocr",
+      "display_name": "GLM-OCR",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "image",
+          "pdf"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "glm-image",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "image",
+      "display_name": "GLM-Image",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "image"
+        ]
+      }
+    },
+    {
+      "id": "cogview-4",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "image",
+      "display_name": "CogView-4",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "image"
+        ]
+      }
+    },
+    {
+      "id": "cogvideox-3",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "video",
+      "display_name": "CogVideoX-3",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "video"
+        ]
+      }
+    },
+    {
+      "id": "glm-asr-2512",
+      "object": "model",
+      "owned_by": "zai",
+      "type": "audio",
+      "display_name": "GLM-ASR-2512",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    }
+  ],
+  "minimax": [
+    {
+      "id": "MiniMax-M2.7",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "minimax",
+      "display_name": "MiniMax M2.7",
+      "status": "current",
+      "context_length": 204800,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "MiniMax-M2.7-highspeed",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "minimax",
+      "display_name": "MiniMax M2.7 Highspeed",
+      "status": "current",
+      "context_length": 204800
+    },
+    {
+      "id": "MiniMax-M2.5",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "minimax",
+      "display_name": "MiniMax M2.5",
+      "status": "current",
+      "context_length": 204800
+    },
+    {
+      "id": "MiniMax-M2.5-highspeed",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "minimax",
+      "display_name": "MiniMax M2.5 Highspeed",
+      "status": "current",
+      "context_length": 204800
+    },
+    {
+      "id": "M2-her",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "minimax",
+      "display_name": "M2-her",
+      "status": "current",
+      "context_length": 204800
+    },
+    {
+      "id": "MiniMax-M2.1",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "minimax",
+      "display_name": "MiniMax M2.1",
+      "status": "legacy",
+      "context_length": 204800
+    },
+    {
+      "id": "MiniMax-M2.1-highspeed",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "minimax",
+      "display_name": "MiniMax M2.1 Highspeed",
+      "status": "legacy",
+      "context_length": 204800
+    },
+    {
+      "id": "MiniMax-M2",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "minimax",
+      "display_name": "MiniMax M2",
+      "status": "legacy",
+      "context_length": 204800,
+      "max_completion_tokens": 128000,
+      "thinking": {
+        "supported": true
+      }
+    },
+    {
+      "id": "speech-2.8-hd",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "audio",
+      "display_name": "Speech 2.8 HD",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "audio"
+        ]
+      }
+    },
+    {
+      "id": "speech-2.8-turbo",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "audio",
+      "display_name": "Speech 2.8 Turbo",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "audio"
+        ]
+      }
+    },
+    {
+      "id": "MiniMax-Hailuo-2.3",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "video",
+      "display_name": "MiniMax Hailuo 2.3",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "video"
+        ]
+      }
+    },
+    {
+      "id": "MiniMax-Hailuo-2.3-Fast",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "video",
+      "display_name": "MiniMax Hailuo 2.3 Fast",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "image"
+        ],
+        "output": [
+          "video"
+        ]
+      }
+    },
+    {
+      "id": "MiniMax-Hailuo-02",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "video",
+      "display_name": "MiniMax Hailuo 02",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "video"
+        ]
+      }
+    },
+    {
+      "id": "image-01",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "image",
+      "display_name": "Image 01",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "image"
+        ]
+      }
+    },
+    {
+      "id": "music-2.6",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "music",
+      "display_name": "Music 2.6",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "audio"
+        ]
+      }
+    },
+    {
+      "id": "API-vlm",
+      "object": "model",
+      "owned_by": "minimax",
+      "type": "mcp",
+      "display_name": "API-vlm",
+      "status": "current",
+      "modalities": {
+        "input": [
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      }
+    }
+  ],
+  "ai21": [
+    {
+      "id": "jamba-large",
+      "object": "model",
+      "owned_by": "ai21",
+      "type": "ai21",
+      "display_name": "Jamba Large",
+      "status": "current",
+      "context_length": 256000,
+      "version": "1.7",
+      "snapshot": "2025-07",
+      "alias_for": "jamba-large-1.7-2025-07"
+    },
+    {
+      "id": "jamba-mini",
+      "object": "model",
+      "owned_by": "ai21",
+      "type": "ai21",
+      "display_name": "Jamba Mini",
+      "status": "current",
+      "context_length": 256000,
+      "version": "2",
+      "snapshot": "2026-01",
+      "alias_for": "jamba-mini-2-2026-01"
+    },
+    {
+      "id": "jamba-large-1.7-2025-07",
+      "object": "model",
+      "owned_by": "ai21",
+      "type": "ai21",
+      "display_name": "Jamba Large 1.7 2025-07",
+      "status": "current",
+      "context_length": 256000
+    },
+    {
+      "id": "jamba-mini-2-2026-01",
+      "object": "model",
+      "owned_by": "ai21",
+      "type": "ai21",
+      "display_name": "Jamba Mini 2 2026-01",
+      "status": "current",
+      "context_length": 256000
+    }
+  ]
+}
