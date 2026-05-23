@@ -1,7 +1,7 @@
 {
   "_meta": {
     "schema_version": "1.1.0",
-    "updated_at": "2026-05-07",
+    "updated_at": "2026-05-23",
     "currency": "mixed",
     "default_unit": "per_1m_tokens",
     "notes": [
@@ -9,12 +9,15 @@
       "Official pages can change without versioned release notes; refresh this file from the listed sources before billing-critical use.",
       "Root currency is mixed after adding CNY-denominated Chinese cloud/platform pricing; each provider section declares currency and unit overrides.",
       "Prices are copied from official pages. Do not normalize currencies unless a downstream billing layer supplies an exchange rate.",
-      "When an official page lists only plan entitlements or omits token pricing, the section stores notes or non-token plan prices instead of inferred token prices."
+      "When an official page lists only plan entitlements or omits token pricing, the section stores notes or non-token plan prices instead of inferred token prices.",
+      "OpenAI image-generation pricing stores modality-specific text and image token prices; downstream billing must use the usage modality details when the API returns them.",
+      "OpenAI image-generation per-image estimates are copied as operator guidance only; they do not override token-level settlement when usage details are available."
     ],
     "sources": {
       "openai_models": "https://developers.openai.com/api/docs/models/all",
       "openai_pricing": "https://developers.openai.com/api/docs/pricing",
       "openai_latest_model": "https://developers.openai.com/api/docs/guides/latest-model.md",
+      "openai_image_generation": "https://developers.openai.com/api/docs/guides/image-generation",
       "anthropic_models": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
       "anthropic_pricing": "https://platform.claude.com/docs/en/about-claude/pricing.md",
       "gemini_models": "https://ai.google.dev/gemini-api/docs/models",
@@ -1019,7 +1022,8 @@
     "image_generation": {
       "unit": "per_1m_tokens",
       "notes": [
-        "For image generation cost estimates, OpenAI directs users to the calculator in the image generation guide."
+        "For image generation cost estimates, OpenAI directs users to the calculator in the image generation guide.",
+        "per_image_estimates records official common-size output estimates in USD per image. Text input and edit/reference image input tokens still need to be added for final cost estimates."
       ],
       "gpt-image-2": {
         "standard": {
@@ -1044,6 +1048,27 @@
             "input": 2.5,
             "cached_input": 0.625,
             "output": null
+          }
+        },
+        "per_image_estimates": {
+          "unit": "USD_per_image",
+          "source_note": "Official guide examples for 1024x1024, 1024x1536, and 1536x1024; gpt-image-2 supports additional valid sizes.",
+          "quality": {
+            "low": {
+              "1024x1024": 0.006,
+              "1024x1536": 0.005,
+              "1536x1024": 0.005
+            },
+            "medium": {
+              "1024x1024": 0.053,
+              "1024x1536": 0.041,
+              "1536x1024": 0.041
+            },
+            "high": {
+              "1024x1024": 0.211,
+              "1024x1536": 0.165,
+              "1536x1024": 0.165
+            }
           }
         }
       },
@@ -1071,6 +1096,26 @@
             "cached_input": 0.63,
             "output": 5
           }
+        },
+        "per_image_estimates": {
+          "unit": "USD_per_image",
+          "quality": {
+            "low": {
+              "1024x1024": 0.009,
+              "1024x1536": 0.013,
+              "1536x1024": 0.013
+            },
+            "medium": {
+              "1024x1024": 0.034,
+              "1024x1536": 0.05,
+              "1536x1024": 0.05
+            },
+            "high": {
+              "1024x1024": 0.133,
+              "1024x1536": 0.2,
+              "1536x1024": 0.2
+            }
+          }
         }
       },
       "gpt-image-1-mini": {
@@ -1096,6 +1141,26 @@
             "input": 1,
             "cached_input": 0.1,
             "output": null
+          }
+        },
+        "per_image_estimates": {
+          "unit": "USD_per_image",
+          "quality": {
+            "low": {
+              "1024x1024": 0.005,
+              "1024x1536": 0.006,
+              "1536x1024": 0.006
+            },
+            "medium": {
+              "1024x1024": 0.011,
+              "1024x1536": 0.015,
+              "1536x1024": 0.015
+            },
+            "high": {
+              "1024x1024": 0.036,
+              "1024x1536": 0.052,
+              "1536x1024": 0.052
+            }
           }
         }
       },
@@ -1123,6 +1188,26 @@
             "cached_input": 0.63,
             "output": null
           }
+        },
+        "per_image_estimates": {
+          "unit": "USD_per_image",
+          "quality": {
+            "low": {
+              "1024x1024": 0.011,
+              "1024x1536": 0.016,
+              "1536x1024": 0.016
+            },
+            "medium": {
+              "1024x1024": 0.042,
+              "1024x1536": 0.063,
+              "1536x1024": 0.063
+            },
+            "high": {
+              "1024x1024": 0.167,
+              "1024x1536": 0.25,
+              "1536x1024": 0.25
+            }
+          }
         }
       },
       "chatgpt-image-latest": {
@@ -1148,6 +1233,26 @@
             "input": 2.5,
             "cached_input": 0.63,
             "output": 5
+          }
+        },
+        "per_image_estimates": {
+          "unit": "USD_per_image",
+          "quality": {
+            "low": {
+              "1024x1024": 0.009,
+              "1024x1536": 0.013,
+              "1536x1024": 0.013
+            },
+            "medium": {
+              "1024x1024": 0.034,
+              "1024x1536": 0.05,
+              "1536x1024": 0.05
+            },
+            "high": {
+              "1024x1024": 0.133,
+              "1024x1536": 0.2,
+              "1536x1024": 0.2
+            }
           }
         }
       }

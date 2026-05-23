@@ -35,7 +35,8 @@ add it as its own explicitly labeled root key.
 
 Use official sources only:
 
-- OpenAI: Developers model list, pricing page, latest-model guide.
+- OpenAI: Developers model list, model detail pages, pricing page,
+  latest-model guide, and image generation guide.
 - Anthropic Claude: official model overview and pricing docs.
 - Google Gemini: Gemini API model and pricing docs.
 - Google Vertex: official Google Cloud Gemini/Vertex pricing docs.
@@ -62,7 +63,7 @@ page lists a model but does not publish token pricing, keep the model in
 1. Re-check the official source URLs in `_meta.sources`.
 2. Update `models.json` first, preserving provider/product grouping.
 3. Update `model-prices.json` next, using official units and `null` where an official
-   table shows no cached-input price.
+   table shows no cached-input or output price.
 4. Keep deprecated, legacy, and snapshot models when official model or pricing
    pages still list them.
 5. Do not remove a model just because it is old; remove it only when official
@@ -97,9 +98,11 @@ const byScope = Object.fromEntries(
 for (const [scope, section] of Object.entries(prices)) {
   if (scope === '_meta' || !section || typeof section !== 'object') continue;
   const ids = new Set();
-  for (const key of ['models', 'embeddings']) {
+  for (const key of ['models', 'embeddings', 'image_generation']) {
     if (section[key] && typeof section[key] === 'object') {
-      for (const id of Object.keys(section[key])) ids.add(id);
+      for (const id of Object.keys(section[key])) {
+        if (!['unit', 'currency', 'notes'].includes(id)) ids.add(id);
+      }
     }
   }
   const known = byScope[scope];
@@ -151,10 +154,27 @@ CNY. Token prices are per 1M tokens unless a model price object states another
 unit, such as per 1K tokens, per second, per image, per request, per minute, or
 plan price.
 
+OpenAI image generation models can expose separate text-token and image-token
+prices. Keep those modality-specific entries instead of flattening them to one
+generic input/output rate. Per-image estimate tables are operator guidance for
+common output sizes only; billing should prefer upstream token usage details
+when they are available.
+
 Antigravity is recorded as plan entitlement pricing because the official page
 does not publish token-level prices.
 
 ## Update Notes
+
+### 2026-05-23
+
+- Refreshed OpenAI image-generation metadata from official model detail pages
+  and the image generation guide.
+- Added GPT Image 2 endpoint, option, snapshot, streaming-event, and tiered
+  rate-limit metadata.
+- Added image-family per-image cost estimates for common output sizes while
+  preserving modality-specific text/image token prices for settlement.
+- Updated validation guidance so image-generation price entries are checked
+  against local model IDs.
 
 ### 2026-05-07
 

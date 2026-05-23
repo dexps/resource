@@ -1,7 +1,7 @@
 {
   "_meta": {
     "schema_version": "1.1.0",
-    "updated_at": "2026-05-07",
+    "updated_at": "2026-05-23",
     "description": "Official-source model registry for API models and product-scoped model availability.",
     "source_policy": "Use only official provider documentation, official pricing pages, or official product entitlement pages. Do not infer unpublished model IDs or prices.",
     "status_values": [
@@ -20,12 +20,14 @@
       "When consuming this file, ignore _meta or explicitly select root values whose type is array.",
       "Root scopes can be direct model vendors, cloud model platforms, or product entitlement scopes; use _meta.scope_types when a consumer must distinguish them.",
       "A provider scope is expanded only from official model/pricing documentation. Aggregators are excluded unless added as their own clearly labeled scope.",
-      "Chinese cloud/platform pricing is recorded in CNY with the official per-token unit when the source uses CNY."
+      "Chinese cloud/platform pricing is recorded in CNY with the official per-token unit when the source uses CNY.",
+      "Image-generation model entries may include api_endpoints, image_generation option metadata, feature flags, and tiered rate-limit notes when the official model or guide pages publish them."
     ],
     "sources": {
       "openai_models": "https://developers.openai.com/api/docs/models/all",
       "openai_pricing": "https://developers.openai.com/api/docs/pricing",
       "openai_latest_model": "https://developers.openai.com/api/docs/guides/latest-model.md",
+      "openai_image_generation": "https://developers.openai.com/api/docs/guides/image-generation",
       "claude_models": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
       "claude_pricing": "https://platform.claude.com/docs/en/about-claude/pricing.md",
       "gemini_models": "https://ai.google.dev/gemini-api/docs/models",
@@ -481,6 +483,98 @@
         "output": [
           "image"
         ]
+      },
+      "aliases": [
+        "gpt-image-2-2026-04-21"
+      ],
+      "api_endpoints": [
+        "v1/images/generations",
+        "v1/images/edits",
+        "v1/responses"
+      ],
+      "image_generation": {
+        "quality": [
+          "low",
+          "medium",
+          "high",
+          "auto"
+        ],
+        "size": {
+          "default": "auto",
+          "popular": [
+            "1024x1024",
+            "1536x1024",
+            "1024x1536",
+            "2048x2048",
+            "2048x1152",
+            "3840x2160",
+            "2160x3840",
+            "auto"
+          ],
+          "constraints": {
+            "max_edge_px": 3840,
+            "width_height_multiple": 16,
+            "max_aspect_ratio": "3:1",
+            "min_total_pixels": 655360,
+            "max_total_pixels": 8294400,
+            "experimental_above_total_pixels": 3686400
+          }
+        },
+        "output_format": [
+          "png",
+          "jpeg",
+          "webp"
+        ],
+        "background": [
+          "opaque",
+          "auto"
+        ],
+        "transparent_background": false,
+        "input_fidelity": {
+          "supported": false,
+          "note": "Omit input_fidelity for gpt-image-2; image inputs are processed at high fidelity."
+        },
+        "partial_images": {
+          "supported": true,
+          "max": 3,
+          "extra_output_tokens_each": 100
+        }
+      },
+      "features": {
+        "streaming": false,
+        "image_api_streaming": true,
+        "responses_image_generation_tool": true,
+        "function_calling": false,
+        "structured_outputs": false,
+        "fine_tuning": false
+      },
+      "rate_limits": {
+        "unit": "tier",
+        "tiers": {
+          "free": {
+            "supported": false
+          },
+          "tier_1": {
+            "tpm": 100000,
+            "ipm": 5
+          },
+          "tier_2": {
+            "tpm": 250000,
+            "ipm": 20
+          },
+          "tier_3": {
+            "tpm": 800000,
+            "ipm": 50
+          },
+          "tier_4": {
+            "tpm": 3000000,
+            "ipm": 150
+          },
+          "tier_5": {
+            "tpm": 8000000,
+            "ipm": 250
+          }
+        }
       }
     },
     {
@@ -498,8 +592,75 @@
           "image"
         ],
         "output": [
-          "image"
+          "image",
+          "text"
         ]
+      },
+      "aliases": [
+        "gpt-image-1.5-2025-12-16"
+      ],
+      "api_endpoints": [
+        "v1/images/generations",
+        "v1/images/edits",
+        "v1/responses"
+      ],
+      "image_generation": {
+        "quality": [
+          "low",
+          "medium",
+          "high",
+          "auto"
+        ],
+        "size": {
+          "default": "auto",
+          "popular": [
+            "1024x1024",
+            "1536x1024",
+            "1024x1536",
+            "auto"
+          ]
+        },
+        "input_fidelity": {
+          "supported": true,
+          "values": [
+            "low",
+            "high"
+          ]
+        }
+      },
+      "features": {
+        "streaming": false,
+        "function_calling": false,
+        "structured_outputs": false,
+        "fine_tuning": false
+      },
+      "rate_limits": {
+        "unit": "tier",
+        "tiers": {
+          "free": {
+            "supported": false
+          },
+          "tier_1": {
+            "tpm": 100000,
+            "ipm": 5
+          },
+          "tier_2": {
+            "tpm": 250000,
+            "ipm": 20
+          },
+          "tier_3": {
+            "tpm": 800000,
+            "ipm": 50
+          },
+          "tier_4": {
+            "tpm": 3000000,
+            "ipm": 150
+          },
+          "tier_5": {
+            "tpm": 8000000,
+            "ipm": 250
+          }
+        }
       }
     },
     {
@@ -510,7 +671,56 @@
       "display_name": "chatgpt-image-latest",
       "description": "Previous image model used in ChatGPT.",
       "status": "current",
-      "category": "image"
+      "category": "image",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "image",
+          "text"
+        ]
+      },
+      "api_endpoints": [
+        "v1/images/generations",
+        "v1/images/edits",
+        "v1/responses"
+      ],
+      "features": {
+        "streaming": false,
+        "function_calling": false,
+        "structured_outputs": false,
+        "fine_tuning": false
+      },
+      "rate_limits": {
+        "unit": "tier",
+        "tiers": {
+          "free": {
+            "supported": false
+          },
+          "tier_1": {
+            "tpm": 100000,
+            "ipm": 5
+          },
+          "tier_2": {
+            "tpm": 250000,
+            "ipm": 20
+          },
+          "tier_3": {
+            "tpm": 800000,
+            "ipm": 50
+          },
+          "tier_4": {
+            "tpm": 3000000,
+            "ipm": 150
+          },
+          "tier_5": {
+            "tpm": 8000000,
+            "ipm": 250
+          }
+        }
+      }
     },
     {
       "id": "gpt-image-1",
@@ -520,7 +730,55 @@
       "display_name": "GPT Image 1",
       "description": "Deprecated previous image generation model.",
       "status": "deprecated",
-      "category": "image"
+      "category": "image",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "image"
+        ]
+      },
+      "api_endpoints": [
+        "v1/images/generations",
+        "v1/images/edits",
+        "v1/responses"
+      ],
+      "features": {
+        "streaming": false,
+        "function_calling": false,
+        "structured_outputs": false,
+        "fine_tuning": false
+      },
+      "rate_limits": {
+        "unit": "tier",
+        "tiers": {
+          "free": {
+            "supported": false
+          },
+          "tier_1": {
+            "tpm": 100000,
+            "ipm": 5
+          },
+          "tier_2": {
+            "tpm": 250000,
+            "ipm": 20
+          },
+          "tier_3": {
+            "tpm": 800000,
+            "ipm": 50
+          },
+          "tier_4": {
+            "tpm": 3000000,
+            "ipm": 150
+          },
+          "tier_5": {
+            "tpm": 8000000,
+            "ipm": 250
+          }
+        }
+      }
     },
     {
       "id": "gpt-image-1-mini",
@@ -530,7 +788,55 @@
       "display_name": "gpt-image-1-mini",
       "description": "Cost-efficient version of GPT Image 1.",
       "status": "current",
-      "category": "image"
+      "category": "image",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "image"
+        ]
+      },
+      "api_endpoints": [
+        "v1/images/generations",
+        "v1/images/edits",
+        "v1/responses"
+      ],
+      "features": {
+        "streaming": false,
+        "function_calling": false,
+        "structured_outputs": false,
+        "fine_tuning": false
+      },
+      "rate_limits": {
+        "unit": "tier",
+        "tiers": {
+          "free": {
+            "supported": false
+          },
+          "tier_1": {
+            "tpm": 100000,
+            "ipm": 5
+          },
+          "tier_2": {
+            "tpm": 250000,
+            "ipm": 20
+          },
+          "tier_3": {
+            "tpm": 800000,
+            "ipm": 50
+          },
+          "tier_4": {
+            "tpm": 3000000,
+            "ipm": 150
+          },
+          "tier_5": {
+            "tpm": 8000000,
+            "ipm": 250
+          }
+        }
+      }
     },
     {
       "id": "dall-e-3",
